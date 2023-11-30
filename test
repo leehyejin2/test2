@@ -1,0 +1,6476 @@
+#정의 _CRT_SECURE_NO_WARNING
+#정의 MAX 50
+#정의 TWO 2000
+
+#include <stdio.h>
+#<Windows>를 포함합니다.h>
+#include <창>.h>
+#include <끈.h>
+#include <conio.h>
+#include <time.h>
+#include <stdbool.h>
+
+타이프 디프스트릭트
+{
+	차명[20]; //
+	charst_num[15]; //
+	charpw[15]; //
+	차의 탄생[15]; //
+	성별[10]; //
+	char 영역[20]; //
+	차 거리[15]; // /
+	차실[10]; // ㅇ
+	촤 스톱[10]; // ㅇ
+	char check2[10]; // ㅇ
+	char check4[10]; // ㅇ
+	총계[10]; // ㅇ
+} 사용자;
+사용자 가입[]MAX]; //구조체 배열 
+
+타이프 디프스트릭트
+{
+	차명[20]; //
+	charst_num[15]; //
+	차의 탄생[15]; //
+	성별[10]; //
+	char 영역[20]; //
+	char check[10]; // 룸메이트 승인 체크
+	차실[10]; // ㅇ
+} 짝짓기;
+짝짓기를 신청하다[신청하다]MAX];
+메이트 어플리케이트 2 [MAX];
+
+타이프 디프스트릭트
+{
+	차명[15]; // ㅇ
+	charst_num[20]; // ㅇ
+	char phone[20]; // ㅇ                       
+	차실[15]; // ㅇ         
+	이유[50]; // ㅇ
+	[20]을 끄집어내다; // ㅇ
+	차를 몰아[20]; //  back
+	char check3[10]; // ㅇ
+} 밤을 새우다,
+밤을 새우다[밤을 새다]MAX];
+
+타이프 디프스트릭트
+{
+	차명[15]; // ㅇ
+	charst_num[20]; // ㅇ
+	차점[15]; // ㅇ
+	charp_reason[100]; // ㅇ
+} 벌점;
+벌점[벌점]MAX];
+
+typedef struct
+{
+	char title[40]; // 제목
+	char st_num[20]; // 학번(작성자)
+	char contents[200]; // 문의내용
+	char answer_cont[200]; // 답변내용
+	char check[5]; // 답변 확인 체크
+}inquire;
+inquire cont[MAX];
+
+// UI함수
+void square(int width, int height, int x, int y);
+void square1(int width, int height, int x, int y, char* msg);
+void square_char(int width, int height, int x, int y, char* msg);
+void square_char3(int width, int height, int x, int y, char* msg);
+void square2();
+void square3();
+void square_char2(int width, int height, int x, int y, char* msg);
+// 테이블 함수
+void goto_xy(int x, int y); //상자 위치 옮기는 함수
+void gotoxy(int x, int y); //입력 커서 옮기는 함수
+
+// 기능 함수
+void basic(); // 메인화면
+void studentUI(); // 학생 첫번째 화면
+void login(); // 학생 로그인 화면
+void sign_up(); // 학생 회원가입 화면
+void pw_find(); // 학생 비밀번호 찾기 화면
+void student_menu(); // 학생 메인화면
+void student_dormitory(); // 학생 기숙사 신청 화면
+void entrance(); // 학생 입실 신청 화면
+void caution(); // 학생 입실 주의사항 화면
+void roommate(); // 학생 룸메이트 신청 화면
+void roommate_menu();// 룸메이트 신청 메뉴
+void roommateCh(); // 수락 요청 확인
+void roommateAccept(); // 룸메이트 신청 수락
+void check(); // 기숙사 신청 조회 화면
+void check2(); // 기숙사 조회 화면 함수
+void modify(); //기숙사 신청 수정 화면
+void delete(); // 기숙사 신청 삭제
+void delete2();
+void checkOut(); // 학생 퇴실 신청 화면
+void caution2(); // 학생 퇴실 주의사항 화면
+void roomNumber(); // 방 배정 확인
+void pointStandard(); // 벌점 기준
+void st_point(); // 학생 벌점 확인
+void outCheck(); // 외박 신청 체크
+void sleepOut(); // 외박 신청
+void alarm(); // 문의 알림
+void inquiryCheck(); // 문의사항
+void inquiry(); // 문의사항2
+void inquiryUI();
+void answerCheck(); // 관리자 문의 답변 확인
+void answerCheck2();
+void answerSearch();
+void inquiryModify(); // 학생 문의사항 수정
+void wcolor(); // 학생 방 색
+void wcolor2();
+void mcolor();
+void mcolor2();
+void managerLogin(); // 관리자 로그인 화면
+void managerUI(); // 관리자 메인화면
+void managementUI(); // 관리자 기숙사 승인 화면
+void number(int n);
+void list(); // 기숙사 신청 승인 명단
+void roommateList(); // 룸메이트 신청 승인 명단
+void roommateSearch();
+void roomCheck(); // 관리자 방 확인
+void roomAssign(); // 학생 방배정
+void roomAssign4(); // 학생 방배정 4층
+void roomAssign5(); // 학생 방배정 5층
+void roomAssign6(); // 학생 방배정 6층
+void roomList(); // 학생 방배정 명단
+void sleepoutList(); // 관리자 외박확인
+void sleepoutSearch(); // 관리자 외박확인 검색
+void point(); // 관리자 벌점 부여
+void point2(); // 관리자 총 벌점이 100점이 되어 강제퇴출
+void coercion(); // 강제 퇴출
+void answer(); // 관리자 문의사항
+void answerModify();// 관리자 문의사항 수정
+void checkoutList(); // 관리자 퇴실 신청 명단
+void checkoutSearch(); //관리자 퇴실 신청 학생 검색
+void layerNumber2(); // 관리자 학생 방 확인 층 
+void roomCheck2(int index1, int index2); // 관리자 방 확인 및 강제 퇴출
+void checkList(); // 학생 조회 명단
+void managerCheck(); // 관리자 학생 학번 조회
+void managerCheck2(); // 관리자 학생 정보 조회
+void managerModify(); // 관리자 학생 정보 수정
+void managerDelete(); // 관리자 학생 정보 삭제
+void manColor();
+void manColor2();
+void womanColor();
+void womanColor2();
+void bubbleSort(user arr[], int n);
+void message(char* msg); // 메세지 창
+void user_append();
+void user_read();
+void user_write();
+void mate_append();
+void mate_read();
+void mate_write();
+void user_delete_write();
+void mate_delete_write();
+void out_append();
+void out_read();
+void out_write();
+void penalty_append();
+void penalty_write();
+void penalty_read();
+void inquire_append();
+void inquire_write();
+void inquire_read();
+void inquire_delete_write();
+
+int tmp = 0, tmp1 = 0, tmp2 = 0, tmp3 = 0; //tmp = 현재 어떤 회원이 로그인하였는지 저장
+int count = 0, count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0; // 회원 전체 수, 룸메이트 전체 수, 벌점 전체 수, 문의사항 전체 수, 모집 인원 수
+int line = 0, line1 = 7, line2 = 5, line3 = 6;
+int line_number = 1, original_line_number = 1;  //신청명단 번호
+int room1 = 301, room2 = 401, room3 = 501, room4 = 601;
+int l = 0; // 모집인원
+
+void main()
+{
+	int menu = 0;
+	system("mode con cols=137 lines=49");
+	user_read();
+	mate_read();
+	out_read();
+	penalty_read();
+	inquire_read();
+	/*student_menu();*/
+	managerUI();
+	// 문의사항 답변, 문의하기 줄
+}
+void basic()
+{
+	int menu = 0;
+	square(60, 30, 29, 3); // 가로, 세로, 가로 공백, 세로 공백 // 큰 상자 테두리
+	square_char(58, 2, 30, 4, " 기숙사");
+	square(60, 2, 29, 34); // 메뉴입력 상자 테두리
+	square_char(29, 2, 45, 16, "1. 사용자");
+	square_char(29, 2, 45, 19, "2. 관리자");
+	square_char(29, 2, 45, 22, "3. 종료");
+	gotoxy(34, 35);
+	printf("메뉴 입력: ");
+	scanf("%d%*c", &menu); //getchar(), %d%*c 버퍼초기화
+	if (menu == 1) {
+		studentUI();
+	}
+	else if (menu == 2) {
+		managerLogin();
+	}
+	else if (menu == 3) {
+		message("     기숙사 프로그램을 종료합니다.");
+		exit(0);
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		basic();
+	}
+}
+void studentUI(){
+	int menu = 0;
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, " 사용자");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 16, "1. 로그인");
+	square_char(29, 2, 45, 19, "2. 회원가입");
+	square_char(29, 2, 45, 22, "3. PW 찾기");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu); 
+	if (menu == 0) {
+		basic();
+	}
+	else if (menu == 1) {
+		login();
+	}
+	else if (menu == 2) {
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 회원가입");
+		square(60, 2, 29, 34);
+		gotoxy(49, 19);
+		printf("회원가입 하시겠습니까?");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			studentUI();
+		}
+		else if (menu == 1) {
+			sign_up();
+		}
+		else {
+			studentUI();
+		}
+	}
+	else if (menu == 3) {
+		pw_find();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		studentUI();
+	}
+}
+void login(){ // 학생 로그인 화면
+	user input;
+	int menu = 0, i = 0;
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, " 로그인");
+	square(60, 2, 29, 34);
+	square(24, 2, 53, 17); // 텍스트 입력 상자
+	square(24, 2, 53, 20); // 텍스트 입력 상자
+	gotoxy(41, 18);
+	printf("학번 : ");
+	gotoxy(41, 21);
+	printf("비밀번호 : ");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	gotoxy(61, 18);
+	scanf("%s", input.st_num);  	
+	gotoxy(63, 21);        //gotoxy(63, 21); //scanf("%s", input.pw);
+	while (1) {
+		input.pw[i] = _getch(); // 문자 단위로 읽기
+		if (input.pw[i] == '\r' || input.pw[i] == '\n') { // Enter 키가 눌렸을 때 반복문 종료
+			input.pw[i] = '\0'; // 비밀번호 문자열을 NULL로 끝맺음
+			break;
+		}
+		else if (i > 0 && input.pw[i] == '\b') { // Backspace 키가 눌렸을 때 비밀번호 문자열에서 마지막 문자를 삭제
+			i--;
+			printf("\b \b"); // 백스페이스로 이전에 출력된 별표를 지움
+		}
+		else { // 비밀번호 각 문자에 대해 별표를 출력
+			printf("*");
+			i++;
+		}
+	}
+	gotoxy(69, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		studentUI();
+	}
+	else if (menu == 1) {
+		for (int i = 0; i < count; i++) {
+			if ((strcmp(input.st_num, join[i].st_num) == 0) && (strcmp(input.pw, join[i].pw) == 0)){
+				tmp = i;
+				message("       로그인을 성공하였습니다.");
+				alarm();
+			}
+		}
+		message("       로그인을 실패하였습니다.");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 로그인");
+		square(60, 2, 29, 34);
+		gotoxy(47, 19);
+		printf("로그인을 다시 하시겠습니까? ");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		gotoxy(69, 35);
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			studentUI();
+		}
+		else if (menu == 1) {
+			login();
+		}
+		studentUI();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		login();
+	}
+}
+void sign_up(){ // 학생 회원가입 화면
+	user input; //구조체 변수 (입력 변수)
+	int menu = 0;
+
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "회원가입");
+	square(60, 2, 29, 34);
+	square(24, 2, 53, 11); 	// 텍스트 입력 상자
+	square(24, 2, 53, 14);
+	square(24, 2, 53, 17);
+	square(24, 2, 53, 20);
+	square(24, 2, 53, 23);
+	square(24, 2, 53, 26);
+	gotoxy(41, 12);
+	printf("이름 : ");
+	gotoxy(41, 15);
+	printf("학번 : ");
+	gotoxy(41, 18);
+	printf("비밀번호 : ");
+	gotoxy(41, 21);
+	printf("생년월일 : ");
+	gotoxy(41, 24);
+	printf("성별 : ");
+	gotoxy(41, 27);
+	printf("지역 : ");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	gotoxy(62, 12);
+	scanf("%s", input.name);
+	gotoxy(61, 15);
+	scanf("%s", input.st_num);
+	gotoxy(63, 18);
+	scanf("%s", input.pw);
+	if (strlen(input.pw) >= 5 || strlen(input.pw) <= 3){
+		message("   숫자 4자리 형식으로 입력해주세요.");
+		sign_up();
+	}
+	gotoxy(62, 21);
+	scanf("%s", input.birth);
+	if (strlen(input.birth) >= 7 || strlen(input.birth) <= 5){
+		message("   숫자 6자리 형식으로 입력해주세요.");
+		sign_up();
+	}
+	gotoxy(63, 24);
+	scanf("%s", input.gender);
+	gotoxy(62, 27);
+	scanf("%s", input.region);
+	if ((strcmp(input.region, "충청북도") == 0)){
+		strcpy(join[count].distance, "60");
+		user_write();
+	}
+	else if ((strcmp(input.region, "경기도") == 0)){
+		strcpy(join[count].distance, "120");
+		user_write();
+	}
+	else if ((strcmp(input.region, "강원도") == 0)){
+		strcpy(join[count].distance, "210");
+		user_write();
+	}
+	else if ((strcmp(input.region, "충청남도") == 0)){
+		strcpy(join[count].distance, "90");
+		user_write();
+	}
+	else if ((strcmp(input.region, "전라북도") == 0)){
+		strcpy(join[count].distance, "150");
+		user_write();
+	}
+	else if ((strcmp(input.region, "전라남도") == 0)){
+		strcpy(join[count].distance, "270");
+		user_write();
+	}
+	else if ((strcmp(input.region, "경상북도") == 0)){
+		strcpy(join[count].distance, "180");
+		user_write();
+	}
+	else if ((strcmp(input.region, "경상남도") == 0)){
+		strcpy(join[count].distance, "240");
+		user_write();
+	}
+	else if ((strcmp(input.region, "제주도") == 0)){
+		strcpy(join[count].distance, "300");
+		user_write();
+	}
+	else {
+		message("     우리나라 도를 입력해 주세요.");
+		sign_up();
+	}
+	gotoxy(69, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		studentUI();
+	}
+	else if (menu == 1) {
+		strcpy(join[count].name, input.name);
+		strcpy(join[count].st_num, input.st_num);
+		strcpy(join[count].pw, input.pw);
+		strcpy(join[count].birth, input.birth);
+		strcpy(join[count].gender, input.gender);
+		strcpy(join[count].region, input.region);
+		strcpy(join[count].room, "0");
+		strcpy(join[count].stop, "1");
+		strcpy(join[count].check2, "0");
+		strcpy(join[count].check4, "0");
+		strcpy(join[count].total, "0");
+		user_append();
+		message("      회원가입이 완료되었습니다.");
+		studentUI();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		sign_up();
+	}
+}
+void pw_find(){ // 학생 비밀번호 찾기 화면
+	user input;
+	int menu = 0;
+
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "비밀번호 찾기");
+	square(60, 2, 29, 34);
+	square(24, 2, 53, 17); // 텍스트 입력 상자
+	square(24, 2, 53, 20); // 텍스트 입력 상자
+	gotoxy(41, 18);
+	printf("이름 : ");
+	gotoxy(41, 21);
+	printf("학번 : ");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	gotoxy(62, 18);
+	scanf("%s", input.name);
+	gotoxy(61, 21);
+	scanf("%s", input.st_num);
+	gotoxy(69, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		studentUI();
+	}
+	else if (menu == 1) {
+		for (int i = 0; i < count; i++) {
+			if ((strcmp(input.name, join[i].name) == 0) && (strcmp(input.st_num, join[i].st_num) == 0)) {
+				system("cls");
+				square(60, 30, 29, 3);
+				square_char(58, 2, 30, 4, "비밀번호 찾기");
+				square(60, 2, 29, 34);
+				gotoxy(48, 19);
+				printf("비밀번호는 %s 입니다.", join[i].pw);
+				gotoxy(34, 35);
+				printf("메뉴 입력 (1. 확인) : ");
+				scanf("%d%*c", &menu);
+				if (menu == 1) {
+					studentUI();
+				}
+			}
+		}
+		message("       잘못 입력된 정보입니다.");
+		pw_find();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		pw_find();
+	}
+}
+void alarm() // 문의 알림
+{
+	for (int i = 0; i < count4; i++) {
+		if ((strcmp(cont[i].st_num, join[tmp].st_num) == 0)) {
+			if ((strcmp(cont[i].answer_cont, "0") == 0)) {
+				student_menu();
+			}
+			else if ((strcmp(cont[i].answer_cont, "0") != 0)) {
+				if ((strcmp(cont[i].check, "0") == 0)) {
+					message("   문의에 대한 답변이 등록되었습니다.");
+					student_menu();
+				}
+			}
+		}
+	}
+}
+void student_menu(){ // 학생 메인화면
+	int menu = 0;
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, " 학생");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 12, "1. 기숙사 신청");
+	square_char(29, 2, 45, 15, "2. 방 배정 조회");
+	square_char(29, 2, 45, 18, "3. 벌점 확인");
+	square_char(29, 2, 45, 21, "4. 외박 신청");
+	square_char(29, 2, 45, 24, "5. 문의사항");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		studentUI();
+	}
+	else if (menu == 1) {
+		student_dormitory();
+	}
+	else if (menu == 2) {
+		roomNumber();
+	}
+	else if (menu == 3) {
+		st_point();
+	}
+	else if (menu == 4) {
+		outCheck();
+	}
+	else if (menu == 5) {
+		inquiryCheck();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		student_menu();
+	}
+}
+void student_dormitory(){ // 학생 기숙사 신청 화면
+	int menu = 0;
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "기숙사 신청");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 14, "1. 입실 신청");
+	square_char(29, 2, 45, 17, "2. 룸메이트 신청");
+	square_char(29, 2, 45, 20, "3. 기숙사 신청 조회, 수정");
+	square_char(29, 2, 45, 23, "4. 퇴실 신청");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+
+	if (menu == 0) {
+		student_menu();
+	}
+	else if (menu == 1) {
+		entrance();
+	}
+	else if (menu == 2) {
+		roommate_menu();
+	}
+	else if (menu == 3) {
+		check();
+	}
+	else if (menu == 4) {
+		checkOut();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		student_menu();
+	}
+}
+void entrance(){ // 학생 입실 신청 화면
+	user input;
+	int menu = 0;
+	system("cls");
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "입실 신청");
+	square(60, 2, 68, 34);
+	caution();
+	gotoxy(69, 27);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(88, 9);
+	printf("  이름 :     %s", join[tmp].name);
+	gotoxy(88, 12);
+	printf("  학번 :    %s", join[tmp].st_num);
+	gotoxy(88, 15);
+	printf("생년월일 :   %s", join[tmp].birth);
+	gotoxy(88, 18);
+	printf("  성별 :      %s", join[tmp].gender);
+	gotoxy(88, 21);
+	printf("  지역 :    %s", join[tmp].region);
+	gotoxy(88, 24);
+	printf("거리 점수 :   %s점", join[tmp].distance);
+	gotoxy(85, 30);
+	printf("이대로 입실 신청하시겠습니까?");
+	gotoxy(73, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_dormitory();
+	}
+	else if (menu == 1) {
+		if ((strcmp(join[tmp].check2, "0") == 0)) {
+			strcpy(join[tmp].check2, "1");
+			user_write();
+			message("      입실 신청이 완료되었습니다.");
+			student_dormitory();
+		}
+		else {
+			message("      이미 입실 신청을 하셨습니다.");
+			student_dormitory();
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		entrance();
+	}
+}
+void caution() { // 학생 입실 주의사항 화면
+	square(60, 30, 3, 5);
+	square_char(58, 2, 4, 6, "주의사항");
+	gotoxy(27, 10);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // 밝은 노란색
+	printf("1. 거리 점수");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15); // 흰색
+	gotoxy(26, 13);
+	printf("충청북도 : 60점");
+	gotoxy(26, 15);
+	printf("충청남도 : 90점");
+	gotoxy(26, 17);
+	printf(" 경기도 : 120점");
+	gotoxy(26, 19);
+	printf("전라북도 : 150점");
+	gotoxy(26, 21);
+	printf("경상북도 : 180점");
+	gotoxy(26, 23);
+	printf(" 강원도 : 210점");
+	gotoxy(26, 25);
+	printf("경상남도 : 240점");
+	gotoxy(26, 27);
+	printf("전라남도 : 270점");
+	gotoxy(26, 29);
+	printf(" 제주도 : 300점");
+	gotoxy(20, 32);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12); // 밝은 빨간색
+	printf("조회된 정보로 입실 신청됩니다.");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+}
+void roommate_menu() // 룸메이트 신청 메뉴
+{
+	system("cls");
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "룸메이트 신청");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 15, "1. 신청");
+	square_char(29, 2, 45, 18, "2. 수락 요청 확인 ");
+	square_char(29, 2, 45, 21, "3. 룸메이트 수락");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_dormitory();
+	}
+	else if (menu == 1) {
+		roommate();
+	}
+	else if (menu == 2) {
+		roommateCh();
+	}
+	else if (menu == 3) {
+		roommateAccept();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		roommate_menu();
+	}
+}
+void roommate(){ // 학생 룸메이트 신청 화면
+	mate input;
+	mate input2;
+	int menu = 0;
+
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "룸메이트 신청");
+	square(60, 2, 29, 34);
+	square(24, 2, 53, 18);
+	square(24, 2, 53, 21);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	square_char(28, 2, 45, 9, "희망 룸메이트");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	gotoxy(42, 19);
+	printf("이름 : ");
+	gotoxy(42, 22);
+	printf("학번 : ");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	gotoxy(62, 19); 	// 희망 룸메이트 정보 입력
+	scanf("%s", input2.name);
+	gotoxy(61, 22);
+	scanf("%s", input2.st_num);
+	gotoxy(69, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		roommate_menu();
+	}
+	else if (menu == 1) {
+		int found = 0; // 일치하는 학번 정보를 찾았는지 여부를 나타내는 변수
+		for (int j = 0; j < count; j++) {
+			if (strcmp(input2.st_num, join[j].st_num) == 0) { // 학번과 일치하는 정보가 있는지 확인
+				found = 1; // 학번 정보가 일치하는 경우 found = 1
+				if ((strcmp(join[tmp].check2, "0") == 0) && (strcmp(join[j].check2, "0") == 0)) {
+					message("    입실 신청이 되어있지 않습니다.");
+					roommate_menu();
+				}
+				else if ((strcmp(join[tmp].check2, "1") == 0) && (strcmp(join[j].check2, "1") == 0)) {
+					message("    입실 승인이 되어있지 않습니다.");
+					roommate_menu();
+				}
+				else if ((strcmp(join[tmp].check2, "2") == 0) && (strcmp(join[tmp].check2, "2") == 0)) {
+					strcpy(apply[count2].name, join[tmp].name);
+					strcpy(apply[count2].st_num, join[tmp].st_num);
+					strcpy(apply2[count2].name, input2.name);
+					strcpy(apply2[count2].st_num, input2.st_num);
+					strcpy(apply2[count2].room, "0");
+					strcpy(apply2[count2].check, "0");
+					mate_append();
+					message("    룸메이트 신청이 완료되었습니다.");
+					roommate_menu();
+				}
+			}
+		}
+		if (!found) { // 일치하는 학번 정보를 찾지 못한 경우
+			message("입력한 학번에 해당하는 정보가 없습니다.");
+			roommate_menu();
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		roommate();
+	}
+}
+void roommateCh() // 수락 요청 확인
+{
+	system("cls");
+	int menu = 0;
+	int displayIndex = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "수락 요청 확인");
+	square(60, 2, 29, 34);
+	square2();
+	gotoxy(33, 8);
+	printf("  수락 요청 현황");
+	for (int i = line; i <= count2; i++) {
+		if (i >= line && i <= line2) {
+			if ((strcmp(join[tmp].st_num, apply[i].st_num) == 0)) {
+				gotoxy(37, 11 + displayIndex * 4);
+				printf("%s", apply2[i].st_num);
+				gotoxy(56, 11 + displayIndex * 4);
+				printf("%s", apply2[i].name);
+				if ((strcmp(apply2[i].check, "0") == 0)) {
+					square_char(11, 2, 71, 10 + displayIndex * 4, "요청됨");
+				}
+				else  if ((strcmp(apply2[i].check, "1") == 0) || (strcmp(apply2[i].check, "3") == 0)) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+					square_char(11, 2, 71, 10 + displayIndex * 4, "수락됨");
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+				else if ((strcmp(apply2[i].check, "2") == 0)) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+					square_char(11, 2, 72, 10 + displayIndex * 4, "거절됨");
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+				displayIndex++;
+			}
+		}
+	}
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 이전, 2. 다음) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		roommate_menu();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 6) {
+			line -= 6;
+			line2 -= 6;
+			original_line_number -= 6;
+		}
+		roommateCh();
+	}
+	if (menu == 2) {
+		line += 6;
+		line2 += 6;
+		original_line_number += 6;
+		roommateCh();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		roommateCh();
+	}
+}
+void roommateAccept() // 룸메이트 신청 수락
+{
+	line_number = original_line_number;
+	int menu = 0;
+	int displayIndex = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "룸메이트 수락");
+	square(60, 2, 29, 34);
+	square2();
+	gotoxy(33, 8);
+	printf("     신청자 학번        신청자명        수락 여부");
+	for (int i = line; i < count2; i++) {
+		if (i >= line && i <= line2) {
+			if ((strcmp(join[tmp].st_num, apply2[i].st_num) == 0)) {
+				gotoxy(39, 11 + displayIndex * 4);
+				printf("%s", apply[i].st_num);
+				gotoxy(58, 11 + displayIndex * 4);
+				printf("%s", apply[i].name);
+				if ((strcmp(apply2[i].check, "0") == 0)) {
+					square_char(11, 2, 72, 10 + displayIndex * 4, "수락");
+				}
+				else  if ((strcmp(apply2[i].check, "1") == 0)|| (strcmp(apply2[i].check, "3") == 0)) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+					square_char(11, 2, 72, 10 + displayIndex * 4, "수락됨");
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+				else if ((strcmp(apply2[i].check, "2") == 0)) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+					square_char(11, 2, 72, 10 + displayIndex * 4, "거절됨");
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+				displayIndex++;
+			}
+		}
+	}
+	gotoxy(33, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 이전, 2. 다음, 3. 검색) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		roommate_menu();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 6) {
+			line -= 6;
+			line2 -= 6;
+			original_line_number -= 6;
+		}
+		roommateAccept();
+	}
+	else if (menu == 2) {
+		line += 6;
+		line2 += 6;
+		original_line_number += 6;
+		roommateAccept();
+	}
+	else if (menu == 3) { // 한명 수락하면 더 이상 수락 안되도록
+		mate input;
+		int roomCount = 0; // 룸메 수락 횟수
+		gotoxy(33, 35);
+		printf("학번 입력 (0. 뒤로가기) : ");
+		printf("                            ");
+		gotoxy(59, 35);
+		scanf("%s", input.st_num);
+		if ((strcmp(input.st_num, "0") == 0)) {
+			roommateAccept();
+		}
+		for (int j = 0; j < count2; j++) {
+			for (int i = 0; i < count2; i++) {
+				if ((strcmp(join[tmp].st_num, apply2[i].st_num) == 0)&& (strcmp(join[tmp].st_num, apply2[j].st_num) == 0)) {
+					tmp3 = j;
+					if ((strcmp(apply[i].st_num, input.st_num) == 0)) {
+						square(60, 30, 29, 3);
+						square_char(58, 2, 30, 4, "룸메이트 수락");
+						square(60, 2, 29, 34);
+						gotoxy(33, 12);
+						printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+						gotoxy(33, 16);
+						printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+						gotoxy(33, 22);
+						printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+						square_char2(1, 10, 33, 12, " ");
+						square_char3(1, 10, 85, 12, " ");
+						square_char3(1, 10, 60, 12, " ");
+						gotoxy(43, 14);
+						printf("신청자 학번 \t\t      신청자명");
+						gotoxy(44, 19);
+						printf("%s \t\t       %s\n", apply[i].st_num, apply[i].name);
+						gotoxy(43, 26);
+						printf("룸메이트 요청을 수락하시겠습니까?");
+						gotoxy(34, 35);
+						printf("메뉴 입력 (0. 뒤로가기, 1. 수락, 2. 거절) : ");
+						scanf("%d%*c", &menu);
+						if (menu == 0) {
+							roommateAccept();
+						}
+						else if (menu == 1) {
+							if ((strcmp(apply2[tmp3].check, "0") == 0)) {
+								if ((strcmp(apply2[i].check, "0") == 0)) {
+									strcpy(apply2[i].check, "1");
+									mate_write();
+									message("      룸메이트를 수락하였습니다.");
+									roommateAccept();
+								}
+							}
+							else if ((strcmp(apply2[tmp3].check, "1") == 0)) {
+								message("   1명의 룸메이트만 수락 가능합니다.");
+								roommateAccept();
+							}
+						}
+						else if (menu == 2) {
+							if ((strcmp(apply2[i].check, "0") == 0)) {
+								strcpy(apply2[i].check, "2");
+								mate_write();
+								message("      룸메이트를 거절하였습니다.");
+								roommateAccept();
+							}
+						}
+						else {
+							message("      입력 정보가 옳지 않습니다.");
+							roommateAccept();
+						}
+					}
+				}
+			}
+		}
+		message("      학번을 다시 입력해주세요.");
+		roommateAccept();
+	}
+}
+void check(){ // 기숙사 신청 조회 화면
+	int menu = 0;
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, " 기숙사 신청 조회");
+	square(60, 2, 29, 34);
+	check2();
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 수정, 2. 취소) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_dormitory();
+	}
+	else if (menu == 1) {
+		modify();
+	}
+	else if (menu == 2) {
+		delete2();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		check();
+	}
+}
+void check2() { // 기숙사 조회 화면 함수
+	gotoxy(30, 27);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(49, 10);
+	printf("  이름 :     %s", join[tmp].name);
+	gotoxy(49, 13);
+	printf("  학번 :    %s", join[tmp].st_num);
+	gotoxy(49, 16);
+	printf("생년월일 :   %s", join[tmp].birth);
+	gotoxy(49, 19);
+	printf("  성별 :      %s", join[tmp].gender);
+	gotoxy(49, 22);
+	printf("  지역 :    %s", join[tmp].region);
+	if ((strcmp(join[tmp].check2, "0") == 0)) {
+		gotoxy(36, 30);
+		printf("입실 확인 : x");
+	}
+	else if ((strcmp(join[tmp].check2, "1") == 0)) {
+		gotoxy(36, 30);
+		printf("입실 확인 : △");
+	}
+	else if ((strcmp(join[tmp].check2, "2") == 0)) {
+		gotoxy(36, 30);
+		printf("입실 확인 : o");
+	}
+	for (int i = 0; i < count1; i++) {
+		if ((strcmp(out[i].st_num, join[tmp].st_num) == 0)&&(strcmp(out[i].check3, "0") == 0)) {
+			gotoxy(53, 30);
+			printf("외박 확인 : x");
+		}
+		else if ((strcmp(out[i].st_num, join[tmp].st_num) == 0)&&(strcmp(out[i].check3, "1") == 0)) {
+			gotoxy(53, 30);
+			printf("외박 확인 : △");
+		}
+		else if ((strcmp(out[i].st_num, join[tmp].st_num) == 0)&& (strcmp(out[i].check3, "2") == 0)) {
+			gotoxy(53, 30);
+			printf("외박 확인 : o");
+		}
+	}
+	if ((strcmp(join[tmp].check4, "0") == 0)) {
+		gotoxy(70, 30);
+		printf("퇴실 확인 : x");
+	}
+	else if ((strcmp(join[tmp].check4, "1") == 0)) {
+		gotoxy(70, 30);
+		printf("퇴실 확인 : △");
+	}
+	else if ((strcmp(join[tmp].check4, "2") == 0)) {
+		gotoxy(70, 30);
+		printf("퇴실 확인 : o");
+	}
+}
+void modify() { // 기숙사 신청 수정 화면
+	system("cls");
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, " 기숙사 신청 수정");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 15, "1. 이름");
+	square_char(29, 2, 45, 18, "2. 비밀번호");
+	square_char(29, 2, 45, 21, "3. 지역");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0){
+		check();
+	}
+	else if (menu == 1){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 기숙사 수정");
+		square(24, 2, 55, 17);
+		gotoxy(41, 18);
+		printf("수정할 이름 : ");
+		gotoxy(64, 18);
+		scanf("%s", join[tmp].name);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		check();
+	}
+	else if (menu == 2){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 기숙사 수정");
+		square(24, 2, 55, 17);
+		gotoxy(39, 18);
+		printf("수정할 비밀번호 : ");
+		gotoxy(66, 18);
+		scanf("%s", join[tmp].pw);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		check();
+	}
+	else if (menu == 3){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 기숙사 수정");
+		square(24, 2, 55, 17);
+		gotoxy(41, 18);
+		printf("수정할 지역 : ");
+		gotoxy(64, 18);
+		scanf("%s", join[tmp].region);
+		if ((strcmp(join[tmp].region, "충청북도") == 0)) {
+			strcpy(join[tmp].distance, "60");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경기도") == 0)) {
+			strcpy(join[tmp].distance, "120");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "강원도") == 0)) {
+			strcpy(join[tmp].distance, "210");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "충청남도") == 0)) {
+			strcpy(join[tmp].distance, "90");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라북도") == 0)) {
+			strcpy(join[tmp].distance, "150");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라남도") == 0)) {
+			strcpy(join[tmp].distance, "270");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상북도") == 0)) {
+			strcpy(join[tmp].distance, "180");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상남도") == 0)) {
+			strcpy(join[tmp].distance, "240");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "제주도") == 0)) {
+			strcpy(join[tmp].distance, "300");
+			user_write();
+		}
+		user_write();
+		message("        수정이 완료되었습니다.");
+		check();
+	}
+	else if (menu == 12){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 기숙사 수정");
+		square(24, 2, 55, 15);
+		square(24, 2, 55, 18);
+		gotoxy(41, 16);
+		printf("수정할 이름 : ");
+		gotoxy(39, 19);
+		printf("수정할 비밀번호 : ");
+		gotoxy(64, 16);
+		scanf("%s", join[tmp].name);
+		gotoxy(63, 19);
+		scanf("%s", join[tmp].pw);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		check();
+	}
+	else if (menu == 13){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 기숙사 수정");
+		square(24, 2, 57, 15);
+		square(24, 2, 57, 18);
+		gotoxy(41, 16);
+		printf("수정할 이름 : ");
+		gotoxy(39, 19);
+		printf("수정할 지역 : ");
+		gotoxy(66, 16);
+		scanf("%s", join[tmp].name);
+		gotoxy(64, 19);
+		scanf("%s", join[tmp].region);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		check();
+	}
+	else if (menu == 23){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 기숙사 수정");
+		square(24, 2, 56, 15);
+		square(24, 2, 56, 18);
+		gotoxy(39, 16);
+		printf("수정할 비밀번호 : ");
+		gotoxy(40, 19);
+		printf("수정할 지역 : ");
+		gotoxy(66, 16);
+		scanf("%s", join[tmp].pw);
+		gotoxy(65, 19);
+		scanf("%s", join[tmp].region);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		check();
+	}
+	else if (menu == 123){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 기숙사 수정");
+		square(24, 2, 57, 14);
+		square(24, 2, 57, 17);
+		square(24, 2, 57, 20);
+		gotoxy(41, 15);
+		printf("수정할 이름 : ");
+		gotoxy(41, 18);
+		printf("수정할 학번 : ");
+		gotoxy(39, 21);
+		printf("수정할 생년월일 : ");
+		gotoxy(66, 15);
+		scanf("%s", join[tmp].name);
+		gotoxy(65, 18);
+		scanf("%s", join[tmp].st_num);
+		gotoxy(66, 21);
+		scanf("%s", join[tmp].birth);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		check();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		modify();
+	}
+}
+void delete2() { // 기숙사 신청 취소
+	system("cls");
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "신청 취소");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 14, "1. 입실 신청 취소");
+	square_char(29, 2, 45, 17, "2. 외박 신청 취소");
+	square_char(29, 2, 45, 20, "3. 퇴실 신청 취소");
+	square_char(29, 2, 45, 23, "4. 룸메이트 신청 취소");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		check();
+	}
+	else if (menu == 1) {
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "신청 취소");
+		square(60, 2, 29, 34);
+		gotoxy(46, 18);
+		printf("입실 신청을 취소하시겠습니까?");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			delete2();
+		}
+		else if (menu == 1) {
+			if ((strcmp(join[tmp].check2, "0") == 0)) {
+				message("    입실 신청이 되어있지 않습니다.");
+				check();
+			}
+			else if ((strcmp(join[tmp].check2, "1") == 0)) {
+				strcpy(join[tmp].check2, "0");
+				user_write();
+				message("      입실 신청이 취소되었습니다.");
+				check();
+			}
+			else {
+				message("   입실 승인되어 취소 불가능합니다.");
+				check();
+			}
+		}
+	}
+	else if (menu == 2) {
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "신청 취소");
+		square(60, 2, 29, 34);
+		gotoxy(46, 18);
+		printf("외박 신청을 취소하시겠습니까?");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			delete2();
+		}
+		else if (menu == 1) {
+			for (int i = 0; i < count1; i++) {
+				if ((strcmp(out[i].st_num, join[tmp].st_num) == 0) && (strcmp(out[i].check3, "0") == 0)) {
+					message("    외박 신청이 되어있지 않습니다.");
+					check();
+				}
+				else if ((strcmp(out[i].st_num, join[tmp].st_num) == 0) && (strcmp(out[i].check3, "1") == 0)) {
+					strcpy(out[i].check3, "0");
+					user_write();
+					message("      외박 신청이 취소되었습니다.");
+					check();
+				}
+				else {
+					message("   외박 승인되어 취소 불가능합니다.");
+					check();
+				}
+			}
+		}
+	}
+	else if (menu == 3) {
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "신청 취소");
+		square(60, 2, 29, 34);
+		gotoxy(46, 18);
+		printf("퇴실 신청을 취소하시겠습니까?");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			delete2();
+		}
+		else if (menu == 1) {
+			if ((strcmp(join[tmp].check4, "0") == 0)) {
+				message("    퇴실 신청이 되어있지 않습니다.");
+				check();
+			}
+			else if ((strcmp(join[tmp].check4, "1") == 0)) {
+				strcpy(join[tmp].check4, "0");
+				user_write();
+				message("      퇴실 신청이 취소되었습니다.");
+				check();
+			}
+			else {
+				message("   퇴실 승인되어 취소 불가능합니다.");
+				check();
+			}
+		}
+	}
+	else if (menu == 4) {
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "신청 취소");
+		square(60, 2, 29, 34);
+		gotoxy(44, 18);
+		printf("룸메이트 신청을 취소하시겠습니까?");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			delete2();
+		}
+		else if (menu == 1) {
+			for(int i=0; i<count2; i++){
+				if ((strcmp(join[tmp].st_num, apply[i].st_num) == 0)) {
+					strcpy(apply[i].name, "");
+					strcpy(apply[i].st_num, "");
+					strcpy(apply2[i].name, "");
+					strcpy(apply2[i].st_num, "");
+					strcpy(apply2[i].room, "");
+					strcpy(apply2[i].check, "");
+					mate_delete_write();
+					message("    룸메이트 신청이 취소되었습니다.");
+					check();
+				}
+			}
+			message("  룸메이트 신청이 되어있지 않습니다.");
+			check();
+		}
+	}
+	else {
+		message("입력 정보가 옳지 않습니다.");
+		delete2();
+	}
+}
+void checkOut(){ // 학생 퇴실 신청 화면
+	int menu = 0;
+	system("cls");
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "퇴실 신청");
+	square(60, 2, 68, 34);
+	caution2();
+	gotoxy(69, 27);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(88, 9);
+	printf("  이름 :     %s", join[tmp].name);
+	gotoxy(88, 12);
+	printf("  학번 :    %s", join[tmp].st_num);
+	gotoxy(88, 15);
+	printf("생년월일 :   %s", join[tmp].birth);
+	gotoxy(88, 18);
+	printf("  성별 :      %s", join[tmp].gender);
+	gotoxy(88, 21);
+	printf("  지역 :     %s", join[tmp].region);
+	gotoxy(88, 24);
+	printf("  호실 :     %s호", join[tmp].room);
+	gotoxy(85, 30);
+	printf("이대로 퇴실 신청하시겠습니까?");
+	gotoxy(73, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_dormitory();
+	}
+	else if (menu == 1) {
+		if ((strcmp(join[tmp].check2, "2") == 0)) {
+			if ((strcmp(join[tmp].check4, "0") == 0)) {
+				strcpy(join[tmp].check4, "1");
+				user_write();
+				message("      퇴실 신청이 완료되었습니다.");
+				student_dormitory();
+			}
+			else {
+				message("      이미 퇴실 신청을 하셨습니다.");
+				student_dormitory();
+			}
+		}
+		else if ((strcmp(join[tmp].check2, "2") != 0)) {
+			message("    입실 승인이 되어있지 않습니다.");
+			student_dormitory();
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		entrance();
+	}
+}
+void caution2(){ // 학생 퇴실 주의사항 화면
+	square(60, 30, 3, 5);
+	square_char(58, 2, 4, 6, "주의사항");
+	gotoxy(28, 12);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // 밝은 노란색
+	printf("1. 방 호수");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15); // 흰색
+	gotoxy(17, 15);
+	printf("-> 방 호수가 정확한지 확인해주세요.");
+	gotoxy(29, 18);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	printf("2. 승인");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	gotoxy(14, 21);
+	printf("-> 퇴실 승인이 되어야 퇴실이 가능합니다.");
+	gotoxy(27, 24);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	printf("3. 문의사항");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	gotoxy(7, 27);
+	printf("-> 확인되지 않은 문의사항이 없는지 다시 확인해주세요.");
+	gotoxy(20, 31);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12); // 밝은 빨간색
+	printf("조회된 정보로 퇴실 신청됩니다.");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+}
+void roomNumber() // 학생 방 배정 확인
+{
+	system("cls");
+	int menu = 0;
+	int foundRoommate = 0; // 룸메이트를 찾았는지를 나타냄(초기화)
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "방 배정 조회");
+	square(60, 2, 68, 34);
+	if (strcmp(join[tmp].gender, "여자") == 0) {
+		if ((strcmp(join[tmp].room, "301") == 0) || (strcmp(join[tmp].room, "302") == 0) || (strcmp(join[tmp].room, "303") == 0) || (strcmp(join[tmp].room, "304") == 0) || (strcmp(join[tmp].room, "305") == 0) || (strcmp(join[tmp].room, "306") == 0) || (strcmp(join[tmp].room, "307") == 0) || (strcmp(join[tmp].room, "308") == 0)
+			|| (strcmp(join[tmp].room, "309") == 0) || (strcmp(join[tmp].room, "310") == 0) || (strcmp(join[tmp].room, "311") == 0) || (strcmp(join[tmp].room, "312") == 0) || (strcmp(join[tmp].room, "313") == 0) || (strcmp(join[tmp].room, "314") == 0) || (strcmp(join[tmp].room, "315") == 0) || (strcmp(join[tmp].room, "316") == 0)
+			|| (strcmp(join[tmp].room, "317") == 0) || (strcmp(join[tmp].room, "318") == 0) || (strcmp(join[tmp].room, "319") == 0) || (strcmp(join[tmp].room, "320") == 0) || (strcmp(join[tmp].room, "321") == 0) || (strcmp(join[tmp].room, "322") == 0) || (strcmp(join[tmp].room, "323") == 0) || (strcmp(join[tmp].room, "324") == 0)) {
+			roomAssign();
+			wcolor();
+		}
+		else if ((strcmp(join[tmp].room, "401") == 0) || (strcmp(join[tmp].room, "402") == 0) || (strcmp(join[tmp].room, "403") == 0) || (strcmp(join[tmp].room, "404") == 0) || (strcmp(join[tmp].room, "405") == 0) || (strcmp(join[tmp].room, "406") == 0) || (strcmp(join[tmp].room, "407") == 0) || (strcmp(join[tmp].room, "408") == 0) || (strcmp(join[tmp].room, "409") == 0)
+			|| (strcmp(join[tmp].room, "410") == 0) || (strcmp(join[tmp].room, "411") == 0) || (strcmp(join[tmp].room, "412") == 0) || (strcmp(join[tmp].room, "413") == 0) || (strcmp(join[tmp].room, "414") == 0) || (strcmp(join[tmp].room, "415") == 0) || (strcmp(join[tmp].room, "416") == 0) || (strcmp(join[tmp].room, "417") == 0) || (strcmp(join[tmp].room, "418") == 0)
+			|| (strcmp(join[tmp].room, "419") == 0) || (strcmp(join[tmp].room, "420") == 0) || (strcmp(join[tmp].room, "421") == 0) || (strcmp(join[tmp].room, "422") == 0) || (strcmp(join[tmp].room, "423") == 0) || (strcmp(join[tmp].room, "424") == 0) || (strcmp(join[tmp].room, "425") == 0) || (strcmp(join[tmp].room, "426") == 0)) {
+			roomAssign4();
+			wcolor2();
+		}
+		else if (strcmp(join[tmp].room, "0") == 0) {
+			roomAssign();
+		}
+	}
+	else if (strcmp(join[tmp].gender, "남자") == 0) {
+		if ((strcmp(join[tmp].room, "501") == 0) || (strcmp(join[tmp].room, "502") == 0) || (strcmp(join[tmp].room, "503") == 0) || (strcmp(join[tmp].room, "504") == 0) || (strcmp(join[tmp].room, "505") == 0) || (strcmp(join[tmp].room, "506") == 0) || (strcmp(join[tmp].room, "507") == 0) || (strcmp(join[tmp].room, "508") == 0)
+			|| (strcmp(join[tmp].room, "509") == 0) || (strcmp(join[tmp].room, "510") == 0) || (strcmp(join[tmp].room, "511") == 0) || (strcmp(join[tmp].room, "512") == 0) || (strcmp(join[tmp].room, "513") == 0) || (strcmp(join[tmp].room, "514") == 0) || (strcmp(join[tmp].room, "515") == 0) || (strcmp(join[tmp].room, "516") == 0)
+			|| (strcmp(join[tmp].room, "517") == 0) || (strcmp(join[tmp].room, "518") == 0) || (strcmp(join[tmp].room, "519") == 0) || (strcmp(join[tmp].room, "520") == 0) || (strcmp(join[tmp].room, "521") == 0) || (strcmp(join[tmp].room, "522") == 0) || (strcmp(join[tmp].room, "523") == 0) || (strcmp(join[tmp].room, "524") == 0))
+		{
+			roomAssign5();
+			mcolor();
+		}
+		else if ((strcmp(join[tmp].room, "601") == 0) || (strcmp(join[tmp].room, "602") == 0) || (strcmp(join[tmp].room, "603") == 0) || (strcmp(join[tmp].room, "604") == 0) || (strcmp(join[tmp].room, "605") == 0) || (strcmp(join[tmp].room, "606") == 0) || (strcmp(join[tmp].room, "607") == 0) || (strcmp(join[tmp].room, "608") == 0) || (strcmp(join[tmp].room, "609") == 0)
+			|| (strcmp(join[tmp].room, "610") == 0) || (strcmp(join[tmp].room, "611") == 0) || (strcmp(join[tmp].room, "612") == 0) || (strcmp(join[tmp].room, "613") == 0) || (strcmp(join[tmp].room, "614") == 0) || (strcmp(join[tmp].room, "615") == 0) || (strcmp(join[tmp].room, "616") == 0) || (strcmp(join[tmp].room, "617") == 0) || (strcmp(join[tmp].room, "618") == 0)
+			|| (strcmp(join[tmp].room, "619") == 0) || (strcmp(join[tmp].room, "620") == 0) || (strcmp(join[tmp].room, "621") == 0) || (strcmp(join[tmp].room, "622") == 0) || (strcmp(join[tmp].room, "623") == 0) || (strcmp(join[tmp].room, "624") == 0) || (strcmp(join[tmp].room, "625") == 0) || (strcmp(join[tmp].room, "626") == 0))
+		{
+			roomAssign6();
+			mcolor2();
+		}
+		else if (strcmp(join[tmp].room, "0") == 0) {
+			roomAssign5();
+		}
+	}
+	gotoxy(69, 8);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(69, 12);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(69, 16);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(69, 20);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	square_char2(1, 12, 80, 8, " ");
+	square_char2(1, 8, 101, 8, " ");
+	square_char2(1, 8, 111, 8, " ");
+	gotoxy(73, 10);
+	printf("학번\t\t%s\n", join[tmp].st_num);
+	gotoxy(105, 10);
+	printf("이름\t     %s\n", join[tmp].name);
+	if (strcmp(join[tmp].stop, "0") == 0) {
+		strcpy(join[tmp].room, "강제 퇴실");
+		gotoxy(73, 14);
+		printf("호실\t\t%s\n", join[tmp].room);
+	}
+	else if ((strcmp(join[tmp].room, "0") == 0)) {
+		gotoxy(73, 14);
+		printf("호실\t\t 미정\n");
+	}
+	else {
+		gotoxy(73, 14);
+		printf("호실\t\t %s호\n", join[tmp].room);
+	}
+	gotoxy(105, 14);
+	printf("성별\t      %s\n", join[tmp].gender);
+	for (int i = 0; i < count; i++) {
+		if ((strcmp(join[tmp].room, join[i].room) == 0) && (strcmp(join[tmp].stop, "0") != 0)) {
+			if ((strcmp(join[tmp].st_num, join[i].st_num) != 0)&& (strcmp(join[tmp].room, "0") != 0)) {
+				gotoxy(71, 18);
+				printf("룸메이트\t\t%s  %s\n", join[i].st_num, join[i].name);
+				foundRoommate = 1; // 룸메이트를 찾았음
+			}
+		}
+		else if ((strcmp(join[tmp].stop, "0") == 0)) {
+			gotoxy(71, 18);
+			printf("룸메이트\t\t 없음");
+		}
+		else if ((strcmp(join[tmp].room, "0") == 0)) {
+			gotoxy(71, 18);
+			printf("룸메이트\t\t 미정\n");
+		}
+	}
+	if (!foundRoommate) {
+		gotoxy(71, 18);
+		printf("룸메이트\t\t 미정\n");
+	}
+	gotoxy(72, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_menu();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		roomNumber();
+	}
+}
+void pointStandard() {
+	square(60, 30, 3, 5);
+	square_char(58, 2, 4, 6, "벌점 기준");
+	square(58, 25, 4, 9);
+	square_char2(1, 25, 53, 9, " ");
+	gotoxy(6, 11);
+	printf("- 절도, 폭행\t\t\t\t\t50점");
+	gotoxy(6, 14);
+	printf("- 무단 외박\t\t\t\t\t10점");
+	gotoxy(6, 17);
+	printf("- 고의적인 시설물 파손\t\t\t\t 5점");
+	gotoxy(6, 20);
+	printf("- 생활관내 애완동물 사육\t\t\t\t10점");
+	gotoxy(6, 23);
+	printf("- 배정된 호실을 타인에게 양도\t\t\t10점");
+	gotoxy(6, 26);
+	printf("- 생활지도 및 호실 점검 불응\t\t\t 5점");
+	gotoxy(6, 29);
+	printf("- 관내에서 화재를 일으킨 행위\t\t\t20점");
+	gotoxy(6, 32);
+	printf("- 벌점 합계 100점인 관생\t\t\t\t퇴실");
+}
+void st_point() // 학생 벌점 확인
+{
+	system("cls");
+	line_number = original_line_number;
+	int menu = 0;
+	int displayIndex = 0;
+	int total_penalty = 0;
+	pointStandard();
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, " 벌점 확인");
+	square(60, 2, 68, 34);
+	square(52, 2, 72, 8);
+	gotoxy(76, 9);
+	printf("순번     벌점      위반 내용");
+	for (int i = 0; i < count3; i++) {
+		if (strcmp(join[tmp].st_num, score[i].st_num) == 0 && strcmp(join[tmp].name, score[i].name) == 0) {
+			total_penalty += atoi(score[i].point);
+		}
+	}
+	for (int i = 0; i < count3; i++) {
+		if (strcmp(join[tmp].st_num, score[i].st_num) == 0) {
+			if (i >= line && i <= line2) {
+				if (line_number > 9) {
+					gotoxy(76, 13 + displayIndex * 3);
+					printf("%d", line_number);
+				}
+				else {
+					gotoxy(77, 13 + displayIndex * 3);
+					printf("%d", line_number);
+				}
+				gotoxy(86, 13 + displayIndex * 3);
+				printf("%s", score[i].point);
+				gotoxy(96, 13 + displayIndex * 3);
+				printf("%s", score[i].p_reason);
+				line_number++;
+				displayIndex++;
+			}
+		}
+	}
+	gotoxy(111, 31);
+	printf("총 벌점 : %d점", total_penalty);
+	gotoxy(73, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 이전, 2. 다음) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_menu();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 6) {
+			line -= 6;
+			line2 -= 6;
+			original_line_number -= 6;
+		}
+		st_point();
+	}
+	else if (menu == 2) {
+		line += 6;
+		line2 += 6;
+		original_line_number += 6;
+		st_point();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		st_point();
+	}
+}
+void outCheck() { // 외박 신청 체크
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "기숙사");
+	square(60, 2, 29, 34);
+	gotoxy(48, 19);
+	printf("외박 신청을 하시겠습니까?");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_menu();
+	}
+	else if (menu == 1) {
+		sleepOut();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		outCheck();
+	}
+}
+void sleepOut() // 외박 신청
+{
+	sleepout input;
+	system("cls");
+	int menu = 0;
+	int found = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "외박 신청");
+	square(60, 2, 29, 34);
+	square(24, 2, 53, 12);
+	square(24, 2, 53, 15);
+	square(24, 2, 53, 18);
+	square(24, 2, 53, 21);
+	square(24, 2, 53, 24);
+	gotoxy(41, 13);
+	printf("연락처 : ");
+	gotoxy(41, 16);
+	printf("호실 : ");
+	gotoxy(41, 19);
+	printf("외출일 : ");
+	gotoxy(41, 22);
+	printf("귀가일 : ");
+	gotoxy(41, 25);
+	printf("사유 : ");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	gotoxy(59, 13);
+	scanf("%s", input.phone);
+	gotoxy(63, 16);
+	scanf("%s", input.room);
+	gotoxy(60, 19);
+	scanf("%s", input.out);
+	gotoxy(60, 22);
+	scanf("%s", input.back);
+	gotoxy(56, 25);
+	scanf(" %[^\n]s", input.reason);
+	gotoxy(69, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_menu();
+	}
+	else if (menu == 1) {
+		if (strcmp(join[tmp].check2, "0") == 0) {
+			message("     입실 신청이 되어있지 않습니다.");
+			outCheck();
+		}
+		else if (strcmp(join[tmp].check2, "1") == 0) {
+			message("     입실 승인이 되어있지 않습니다.");
+			outCheck();
+		}
+		else if ((strcmp(join[tmp].check2, "2") == 0)) {
+			strcpy(out[count1].name, join[tmp].name);
+			strcpy(out[count1].st_num, join[tmp].st_num);
+			strcpy(out[count1].phone, input.phone);
+			strcpy(out[count1].room, input.room);
+			strcpy(out[count1].out, input.out);
+			strcpy(out[count1].back, input.back);
+			strcpy(out[count1].reason, input.reason);
+			strcpy(out[count1].check3, "1");
+			out_append();
+			message("      외박 신청이 완료되었습니다.");
+			student_menu();
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		sleepOut();
+	}
+} 
+void inquiryCheck() // 문의사항
+{
+	system("cls");
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "문의사항");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 17, "1. 문의하기");
+	square_char(29, 2, 45, 20, "2. 답변 확인하기");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		student_menu();
+	}
+	else if (menu == 1) {
+		inquiry();
+	}
+	else if (menu == 2) {
+		system("cls");
+		answerCheck2();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		inquiryCheck();
+	}
+}
+void inquiry() // 문의사항 
+{
+	inquire input;
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "문의사항");
+	square(60, 2, 29, 34);
+	square(58, 25, 30, 7);
+	gotoxy(31, 11);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(34, 9);
+	printf("제목");
+	gotoxy(32, 21);
+	printf("문의내용");
+	square_char2(1, 25, 40, 7, " ");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	gotoxy(44, 9);
+	scanf("%[^\n]s", input.title);
+	while (getchar() != '\n');  // 입력 버퍼 비우기
+	if (strlen(input.title) >= 30) {
+		message("        15자 이내로 입력하세요.");
+		inquiry();
+	}
+	gotoxy(44, 13);
+	scanf(" %[^\n]s", input.contents);
+	gotoxy(69, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		inquiryCheck();
+	}
+	else if (menu == 1) {
+		strcpy(cont[count4].title, input.title);
+		strcpy(cont[count4].st_num, join[tmp].st_num);
+		strcpy(cont[count4].contents, input.contents);
+		strcpy(cont[count4].answer_cont, "0");
+		strcpy(cont[count4].check, "0");
+		inquire_append();
+		message("        문의가 등록되었습니다.");
+		inquiryCheck();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		inquiry();
+	}
+}
+void answerCheck2() {
+	system("cls");
+	line_number = original_line_number;
+	int menu = 0;
+	int displayIndex = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "내 문의 내역");
+	square(60, 2, 29, 34);
+	square(52, 2, 33, 8);
+	gotoxy(37, 9);
+	printf("순번    제목");
+	for (int i = line; i < count4; i++) {
+		if (i >= line && i <= line1) {
+			if ((strcmp(join[tmp].st_num, cont[i].st_num) == 0)) {
+				if (line_number > 9) {
+					gotoxy(37, 13 + displayIndex * 3);
+					printf("%d", line_number);
+				}
+				else {
+					gotoxy(38, 13 + displayIndex * 3);
+					printf("%d", line_number);
+				}
+				gotoxy(45, 13 + displayIndex * 3);
+				printf("%s", cont[i].title);
+				line_number++;
+				displayIndex++;
+			}
+		}
+	}
+	gotoxy(33, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 이전, 2. 다음, 3. 검색) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		inquiryCheck();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 7) {
+			line -= 7;
+			line1 -= 7;
+			original_line_number -= 7;
+		}
+		answerCheck2();
+	}
+	else if (menu == 2) {
+		line += 7;
+		line1 += 7;
+		original_line_number += 7;
+		answerCheck2();
+	}
+	else if (menu == 3) {
+		gotoxy(33, 35);
+		printf("메뉴 입력 (0. 뒤로가기) : ");
+		printf("                            ");
+		answerSearch();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		answerCheck2();
+	}
+}
+void inquiryUI()
+{
+	system("cls");
+	square(60, 30, 3, 5);
+	square_char(58, 2, 4, 6, "문의사항");
+	square(58, 25, 4, 9);
+	gotoxy(5, 13);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(5, 17);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	square_char2(1, 25, 14, 9, " ");
+	gotoxy(8, 11);
+	printf("제목");
+	gotoxy(8, 15);
+	printf("학번");
+	gotoxy(6, 25);
+	printf("문의내용");
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "문의사항");
+	square(60, 2, 68, 34);
+	square(58, 25, 69, 7);
+	gotoxy(70, 11);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(72, 9);
+	printf("작성자");
+	gotoxy(99, 9);
+	printf("관리자");
+	square_char2(1, 25, 79, 7, " ");
+	gotoxy(71, 21);
+	printf("답변내용");
+}
+void answerSearch() // 문의 답변 확인
+{
+	int searchMenu = 0;
+	gotoxy(59, 35);
+	scanf("%d%*c", &searchMenu);
+	if (searchMenu == 0) {
+		answerCheck2();
+	}
+	else {
+		int matchingCount = 0;
+		for (int j = 0; j < count4; j++) { // 조건을 만족하는 학생의 개수 확인
+			if ((strcmp(join[tmp].st_num, cont[j].st_num) == 0)) {
+				matchingCount++;
+			}
+		}
+		if (searchMenu >= 1 && searchMenu <= matchingCount) {
+			int menu = 0;
+			int matchedStudents = 0;
+			for (int j = 0; j < count4; j++) { // 확인한 개수와 파일에 저장된 학생의 개수가 같을 때 출력
+				if ((strcmp(join[tmp].st_num, cont[j].st_num) == 0)) {
+					matchedStudents++;
+					if (matchedStudents == searchMenu) {
+						system("cls");
+						tmp1 = j;
+						inquiryUI();
+						gotoxy(17, 11);
+						printf("%s", cont[tmp1].title);
+						gotoxy(17, 15);
+						printf("%s", cont[tmp1].st_num);
+						gotoxy(17, 20);
+						printf("%s", cont[tmp1].contents);
+						if (strcmp(cont[tmp1].answer_cont, "0") != 0) {
+							gotoxy(82, 13);
+							printf("%s", cont[tmp1].answer_cont);
+						}
+						gotoxy(73, 35);
+						printf("메뉴 입력 (1. 확인, 2. 수정, 3. 삭제) : ");
+						scanf("%d%*c", &menu);
+						if (menu == 1) {
+							if ((strcmp(cont[tmp1].answer_cont, "0") != 0)) {
+								strcpy(cont[tmp1].check, "1");
+								inquire_write();
+								answerCheck2();
+							}
+							else {
+								answerCheck2();
+							}
+						}
+						else if (menu == 2) {
+							system("cls");
+							inquiryModify();
+						}
+						else if (menu == 3) {
+							strcpy(cont[tmp1].title, "");
+							strcpy(cont[tmp1].st_num, "");
+							strcpy(cont[tmp1].contents, "");
+							strcpy(cont[tmp1].answer_cont, "");
+							strcpy(cont[tmp1].check, "");
+							inquire_delete_write();
+							message("         문의가 삭제되었습니다.");
+							answerCheck2();
+						}
+						else {
+							message("      입력 정보가 옳지 않습니다.");
+							answerCheck2();
+						}
+					}
+				}
+			}
+		}
+		else {
+			message("      입력 정보가 옳지 않습니다.");
+			answerCheck2();
+		}
+	}
+}
+void inquiryModify() // 학생 문의사항 수정
+{
+	inquire input;
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "문의사항 수정");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 17, "1. 제목");
+	square_char(29, 2, 45, 20, "2. 문의내용");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		answerCheck2();
+	}
+	else if (menu == 1) {
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "문의사항 수정");
+		square(60, 2, 29, 34);
+		square(58, 25, 30, 7);
+		gotoxy(31, 11);
+		printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		gotoxy(34, 9);
+		printf("제목");
+		gotoxy(32, 21);
+		printf("문의내용");
+		square_char2(1, 25, 40, 7, " ");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 수정) : ");
+		gotoxy(44, 13);
+		printf("%s", cont[tmp1].contents);
+		gotoxy(44, 9);
+		scanf(" %[^\n]s", input.title);
+		gotoxy(69, 35);
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			inquiryModify();
+		}
+		else if (menu = 1) {
+			strcpy(cont[tmp1].answer_cont, "0");
+			strcpy(cont[tmp1].title, input.title);
+			inquire_write();
+			message("        수정이 완료되었습니다.");
+			answerCheck2();
+		}
+	}
+	else if (menu == 2) {
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "문의사항 수정");
+		square(60, 2, 29, 34);
+		square(58, 25, 30, 7);
+		gotoxy(31, 11);
+		printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		gotoxy(34, 9);
+		printf("제목");
+		gotoxy(32, 21);
+		printf("문의내용");
+		square_char2(1, 25, 40, 7, " ");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 수정) : ");
+		gotoxy(44, 9);
+		printf("%s", cont[tmp1].title);
+		gotoxy(44, 13);
+		scanf(" %[^\n]s", input.contents);
+		gotoxy(69, 35);
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			inquiryModify();
+		}
+		else if (menu = 1) {
+			strcpy(cont[tmp1].answer_cont, "0");
+			strcpy(cont[tmp1].contents, input.contents);
+			inquire_write();
+			message("        수정이 완료되었습니다.");
+			answerCheck2();
+		}
+	}
+	else if (menu == 12) {
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "문의사항 수정");
+		square(60, 2, 29, 34);
+		square(58, 25, 30, 7);
+		gotoxy(31, 11);
+		printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		gotoxy(34, 9);
+		printf("제목");
+		gotoxy(32, 21);
+		printf("문의내용");
+		square_char2(1, 25, 40, 7, " ");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 수정) : ");
+		gotoxy(44, 9);
+		scanf(" %[^\n]s", input.title);
+		gotoxy(44, 13);
+		scanf(" %[^\n]s", input.contents);
+		gotoxy(69, 35);
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			inquiryModify();
+		}
+		else if (menu = 1) {
+			strcpy(cont[tmp1].answer_cont, "0");
+			strcpy(cont[tmp1].title, input.title);
+			strcpy(cont[tmp1].contents, input.contents);
+			inquire_write();
+			message("        수정이 완료되었습니다.");
+			answerCheck2();
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		inquiryModify();
+	}
+}
+void managerLogin() // 관리자 로그인 화면
+{
+	system("cls");
+	user input;
+	char manager_id[10] = "123456";
+	char manager_pw[10] = "1111";
+	int menu = 0, i=0;
+	
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, " 관리자");
+	square(60, 2, 29, 34);
+	gotoxy(41, 18);
+	printf("아이디 : ");
+	gotoxy(41, 21);
+	printf("비밀번호 : ");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	square(24, 2, 53, 17); // 텍스트 입력 상자
+	square(24, 2, 53, 20);
+	gotoxy(62, 18);
+	scanf("%s", &input.st_num);
+	gotoxy(63, 21);
+	while (1) {
+		input.pw[i] = _getch(); // 문자 단위로 읽기
+		if (input.pw[i] == '\r' || input.pw[i] == '\n') { // Enter 키가 눌렸을 때 반복문 종료
+			input.pw[i] = '\0'; // 비밀번호 문자열을 NULL로 끝맺음
+			break;
+		}
+		else if (i > 0 && input.pw[i] == '\b') { // Backspace 키가 눌렸을 때 비밀번호 문자열에서 마지막 문자를 삭제
+			i--;
+			printf("\b \b"); // 백스페이스로 이전에 출력된 별표를 지움
+		}
+		else { // 비밀번호 각 문자에 대해 별표를 출력
+			printf("*");
+			i++;
+		}
+	}
+	gotoxy(69, 35);
+	scanf("%d%*c", &menu); // 메뉴 입력
+	if (menu == 0) {
+		basic();
+	}
+	else if (menu == 1) {
+		if ((strcmp(input.st_num, manager_id) == 0) && (strcmp(input.pw, manager_pw) == 0)){
+				message("      로그인을 성공하였습니다.");
+				managerUI();
+		}
+		else {
+			message("      로그인을 실패하였습니다.");
+			managerLogin();
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		managerLogin();
+	}
+}
+void managerUI() // 관리자 메인화면
+{
+	system("cls");
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, " 관리자");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 11, "1. 기숙사 승인 관리");
+	square_char(29, 2, 45, 14, "2. 학생 방배정");
+	square_char(29, 2, 45, 17, "3. 학생 방 조회");
+	square_char(29, 2, 45, 20, "4. 벌점 부여");
+	square_char(29, 2, 45, 23, "5. 문의사항");
+	square_char(29, 2, 45, 26, "6. 학생 정보 조회");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	
+	if (menu == 0) {
+		basic();
+	}
+	else if (menu == 1) {
+		managementUI();
+	}
+	else if (menu == 2) {
+		roomList();
+	}
+	else if (menu == 3) {
+		layerNumber2();
+	}
+	else if (menu == 4) {
+		point();
+	}
+	else if (menu == 5) {
+		answer();
+	}
+	else if (menu == 6) {
+		checkList();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		managerUI();
+	}
+}
+void managementUI() // 관리자 기숙사 승인 화면
+{
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "기숙사 승인");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 14, "1. 입실 승인"); // 신청 명단 조회 같이
+	square_char(29, 2, 45, 17, "2. 퇴실 승인"); // 신청 명단 조회 같이
+	square_char(29, 2, 45, 20, "3. 룸메이트 승인");
+	square_char(29, 2, 45, 23, "4. 외박 승인");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managerUI();
+	}
+	else if (menu == 1) {
+		list();
+	}
+	else if (menu == 2) {
+		checkoutList();
+	}
+	else if (menu == 3) {
+		roommateList();
+	}
+	else if (menu == 4) {
+		sleepoutList();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		managerUI();
+	}
+}
+void number(int n) //모집인원
+{
+	for (int i = l; i < l+n; i++) {
+		if ((strcmp(join[i].check2, "1") == 0)) {
+			strcpy(join[i].check2, "2");
+		}
+	}
+	l += n;
+	user_write();
+	message("      입실 승인이 완료되었습니다.");
+	list();
+}
+void list() // 관리자 기숙사 입실 신청 명단
+{
+	int menu = 0;
+	int startIndex = -1; // △가 있는 첫 번째 인덱스 초기화
+	int displayIndex = 0; // 출력될 인덱스
+	system("cls");
+	line_number = original_line_number;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "입실 신청 명단");
+	square(60, 2, 29, 34);
+	square(52, 2, 33, 8);
+	gotoxy(37, 9);
+	printf("순번     학번       이름       지역      성별");
+	for (int i = 0; i < count; i++) {
+		if ((strcmp(join[i].check2, "1") == 0) || (strcmp(join[i].check2, "2") == 0)) { // 첫 번째 인덱스 찾기
+			startIndex = i;
+			break;
+		}
+	}
+	if (startIndex != -1) {
+		for (int i = startIndex; i < count - 1; i++) { // 내림차순 정렬
+			for (int j = i + 1; j < count; j++) {
+				if (atoi(join[i].distance) < atoi(join[j].distance)) {
+					user temp = join[i];
+					join[i] = join[j];
+					join[j] = temp;
+				}
+			}
+		}
+		for (int i = startIndex; i < count; i++) {
+			if (displayIndex >= 7) { // 화면에 7개 만큼 출력
+				break; 
+			}
+			if ((strcmp(join[i].check2, "1") == 0) || (strcmp(join[i].check2, "2") == 0)) {
+				if (i >= line && i <= line1){
+					if ((strcmp(join[i].check2, "2") == 0)) {
+						for (int i = startIndex; i < count - 1; i++) { // 내림차순 정렬
+							for (int j = i + 1; j < count; j++) {
+								if (atoi(join[i].distance) < atoi(join[j].distance)) {
+									user temp = join[i];
+									join[i] = join[j];
+									join[j] = temp;
+								}
+							}
+						}
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8); // 승인된 학생은 회색 출력
+					}
+					else {
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15); //  승인안된 학생은 하얀색 출력
+					}
+					if (line_number > 9){
+						gotoxy(37, 13 + displayIndex * 3); // 각 회원마다 3줄씩 띄워서 출력
+						printf("%d", line_number);
+					}
+					else {
+						gotoxy(38, 13 + displayIndex * 3);
+						printf("%d", line_number);
+					}
+					gotoxy(44, 13 + displayIndex * 3);
+					printf("%s", join[i].st_num);
+					gotoxy(56, 13 + displayIndex * 3);
+					printf("%s", join[i].name);
+					gotoxy(66, 13 + displayIndex * 3);
+					printf("%s", join[i].region);
+					gotoxy(78, 13 + displayIndex * 3);
+					printf("%s", join[i].gender);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15); // 색상 원래대로
+					line_number++;
+					displayIndex++;
+				}
+			}
+		}
+	}
+	gotoxy(33, 35);
+	printf("메뉴 입력 (1. 이전, 2. 다음, 3. 검색, 4. 승인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managementUI();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 7) {
+			line -= 7;
+			line1 -= 7;
+			original_line_number -= 7;
+		}
+		list();
+	}
+	else if (menu == 2) {
+		line += 7;
+		line1 += 7;
+		original_line_number += 7;
+		list();
+	}
+	else if (menu == 3) {
+		int searchMenu=0;
+		gotoxy(33, 35);
+		printf("메뉴 입력 (0. 뒤로가기) : ");
+		printf("                            ");
+		gotoxy(60, 35);
+		scanf("%d%*c", &searchMenu);
+		if (searchMenu == 0) {
+			list();
+		}
+		else if (searchMenu >= 1 && searchMenu <= count) {
+			int memberIndex = startIndex; // 시작 인덱스부터 회원 정보 찾는 인덱스
+			int countDisplayed = 0; //출력한 회원의 개수 저장
+			system("cls");
+			square(60, 30, 29, 3);
+			square_char(58, 2, 30, 4, "입실 신청 조회");
+			square(60, 2, 29, 34);
+			while (memberIndex < count && countDisplayed < searchMenu) {
+				if (memberIndex >= startIndex && (strcmp(join[memberIndex].check2, "1") == 0 || strcmp(join[memberIndex].check2, "2") == 0)) {
+					countDisplayed++; // 출력할 회원의 개수 기록
+					if (countDisplayed == searchMenu) {
+						square3();
+						square_char2(1, 12, 41, 8, " ");
+						square_char2(1, 12, 62, 8, " ");
+						square_char2(1, 8, 70, 8, " ");
+						gotoxy(34, 10);
+						printf("학번\t\t%s\n", join[memberIndex].st_num);
+						gotoxy(65, 10);
+						printf("이름\t     %s\n", join[memberIndex].name);
+						gotoxy(32, 14);
+						printf("생년월일\t %s\n", join[memberIndex].birth);
+						gotoxy(65, 14);
+						printf("성별\t      %s\n", join[memberIndex].gender);
+						gotoxy(34, 18);
+						printf("지역\t\t %s\n", join[memberIndex].region);
+						gotoxy(69, 18);
+						printf("거리점수 : %s", join[memberIndex].distance);
+						if ((strcmp(join[memberIndex].check2, "1") == 0)) {
+							gotoxy(46, 26);
+							printf("입실 승인이 안 되어있습니다.");
+						}
+						else if((strcmp(join[memberIndex].check2, "2") == 0)) {
+							gotoxy(51, 26);
+							printf("입실 승인되었습니다.");
+						}
+					}
+				}
+				memberIndex++;
+			}
+			gotoxy(34, 35);
+			printf("메뉴 입력 (0. 뒤로가기) : ");
+			gotoxy(60, 35);
+			scanf("%d%*c", &menu);
+			if (menu==0) {
+				list();
+			}
+			else {
+				message("      입력 정보가 옳지 않습니다.");
+				list();
+			}
+		}
+		else {
+			message("      입력 정보가 옳지 않습니다.");
+			list();
+		}
+	}
+	else if (menu == 4) {
+		int menu = 0;
+		int m;
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "모집 인원");
+		square(60, 2, 29, 34);
+		square(24, 2, 56, 19);
+		gotoxy(48, 16);
+		printf("몇 명을 모집하시겠습니까?");
+		gotoxy(39, 20);
+		printf("모집 인원 입력 : ");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		gotoxy(67, 20);
+		scanf("%d", &m);
+		gotoxy(69, 35);
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			list();
+		}
+		else if (menu == 1) {
+			number(m);
+		}
+		else {
+			message("      입력 정보가 옳지 않습니다.");
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		list();
+	}
+}
+void roommateList() // 관리자 룸메이트 신청 명단
+{
+	line_number = original_line_number;
+	int menu = 0;
+	int displayIndex = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "룸메이트 신청 명단");
+	square(60, 2, 29, 34);
+	gotoxy(33, 8);
+	printf("순번      학번1       이름1        학번2        이름2");
+	square2();
+	for (int i = line; i <= count2; i++) {
+		if (i >= line && i <= line2){
+			if ((strcmp(apply2[i].check, "1") == 0) || (strcmp(apply2[i].check, "3") == 0)) {
+				if ((strcmp(apply2[i].check, "3") == 0)) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+				}
+				else {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15); 
+				}
+				if (line_number > 9) {
+					gotoxy(33, 11 + displayIndex * 4);
+					printf("%d", line_number);
+				}
+				else {
+					gotoxy(34, 11 + displayIndex * 4);
+					printf("%d", line_number);
+				}
+				gotoxy(41, 11 + displayIndex * 4);
+				printf("%s", apply[i].st_num);
+				gotoxy(55, 11 + displayIndex * 4);
+				printf("%s", apply[i].name);
+				gotoxy(67, 11 + displayIndex * 4);
+				printf("%s", apply2[i].st_num);
+				gotoxy(81, 11 + displayIndex * 4);
+				printf("%s", apply2[i].name);
+				line_number++;
+				displayIndex++;
+			}
+		}
+	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	gotoxy(33, 35);
+	printf("메뉴 입력 (1. 이전, 2. 다음, 3. 검색, 4. 승인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managementUI();
+	}
+	else if (menu == 1) {
+		line_number = original_line_number;
+		if (original_line_number > 6) {
+			line -= 6;
+			line2 -= 6;
+			original_line_number -= 6;
+		}
+		roommateList();
+	}
+	else if (menu == 2) {
+		line += 6;
+		line2 += 6;
+		original_line_number += 6;
+		roommateList();
+	}
+	else if (menu == 3) {
+		roommateSearch();
+	}
+	else if (menu == 4) {
+		int high = 300, high1 = 401, high2 = 500, high3 = 601;
+		for (int i = 0; i < count2; i++) {
+			int rcheck = atoi(apply2[i].room);
+			if (rcheck >= 301 && rcheck <= 324 && rcheck > high) {
+				high = rcheck;
+				high++;
+			}
+			else if (rcheck >= 501 && rcheck <= 524 && rcheck > high2) {
+				high2 = rcheck;
+				high2++;
+			}
+		}
+		for (int i = 0; i < count; i++) {
+			for (int j = 0; j < count2; j++) {
+				if ((strcmp(join[i].st_num, apply[j].st_num) == 0)) {
+					if ((strcmp(apply2[j].check, "2") != 0)) {
+						if ((strcmp(join[i].gender, "여자") == 0) && (strcmp(apply2[j].room, "0") == 0)) {
+							if (high == 300) {
+								sprintf(apply2[j].room, "%d", room1);
+								room1++;
+							}
+							else if (high >= 301 && high <= 324) {
+								sprintf(apply2[j].room, "%d", high); // 문자열로 변환하여 저장
+								high++;
+							}
+							else if (high1 >= 401 && high1 <= 426) {
+								sprintf(apply2[j].room, "%d", high1);
+								high1++;
+							}
+						}
+						else if ((strcmp(join[i].gender, "남자") == 0) && (strcmp(apply2[j].room, "0") == 0)) {
+							if (high2 == 500) {
+								sprintf(apply2[j].room, "%d", room3);
+								room3++;
+							}
+							else if (high2 >= 501 && high2 <= 524) {
+								sprintf(apply2[j].room, "%d", high2);
+								high2++;
+							}
+							else if (high3 >= 601 && room4 <= 626) {
+								sprintf(apply2[j].room, "%d", high3);
+								high3++;
+							}
+						}
+						strcpy(apply2[j].check, "3");
+					}
+					else {
+						roommateList();
+					}
+				}
+			}
+		}
+		mate_write();
+		for (int index = 0; index < count2; index++) {
+			for (int i = 0; i < count; i++) {
+				if (strcmp(join[i].st_num, apply[index].st_num) == 0) {
+					for (int j = 0; j < count; j++) {
+						if (strcmp(join[j].st_num, apply2[index].st_num) == 0) {
+							strcpy(join[i].room, apply2[index].room);
+							user_write();
+							strcpy(join[j].room, apply2[index].room);
+							user_write();
+						}
+					}
+				}
+			}
+		}
+		message("           승인되었습니다.");
+		roommateList();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		roommateList();
+	}
+}
+void roommateSearch() // 관리자 룸메이트 검색
+{
+	int searchMenu = 0;
+	gotoxy(33, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	printf("                            ");
+	gotoxy(60, 35);
+	scanf("%d%*c", &searchMenu);
+	if (searchMenu == 0) {
+		line_number = original_line_number;
+		roommateList();
+	}
+	else if (searchMenu >= 1 && searchMenu <= 100) {
+		int menu = 0;
+		int index = searchMenu - 1; // 배열 인덱스로 변환
+		if (index < count2) {
+			for (int i = 0; i < count; i++) {
+				if ((strcmp(join[i].st_num, apply[index].st_num) == 0)) {
+					square(60, 30, 29, 3);
+					square_char(58, 2, 30, 4, "룸메이트 신청 승인");
+					square(60, 2, 29, 34);
+					gotoxy(30, 9);
+					printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					gotoxy(30, 13);
+					printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					gotoxy(30, 17);
+					printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					gotoxy(30, 21);
+					printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					gotoxy(30, 25);
+					printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					gotoxy(30, 29);
+					printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					square_char2(1, 20, 42, 9, " ");
+					square_char2(1, 8, 60, 9, " ");
+					square_char2(1, 8, 70, 9, " ");
+					square_char2(1, 4, 60, 21, " ");
+					square_char2(1, 4, 70, 21, " ");
+					gotoxy(31, 11);
+					printf("신청자 학번\t%s\n", apply[index].st_num);
+					gotoxy(62, 11);
+					printf("신청자명\t     %s\n", apply[index].name);
+					gotoxy(33, 15);
+					printf("생년월일\t %s\n", join[i].birth);
+					gotoxy(64, 15);
+					printf("성별\t     %s", join[i].gender);
+					gotoxy(34, 19);
+					printf("지역\t\t\t   %s", join[i].region);
+					gotoxy(34, 23);
+					printf("학번2\t\t%s", apply2[index].st_num);
+					gotoxy(64, 23);
+					printf("이름\t     %s", apply2[index].name);
+					gotoxy(34, 35);
+					printf("메뉴 입력 (0. 뒤로가기, 1. 방 배정) : ");
+					gotoxy(33, 27);
+					printf("방 호수");
+					gotoxy(61, 27);
+					if (strcmp(apply2[index].room, "0") == 0) {
+						strcpy(apply2[index].room, "미정");
+						gotoxy(47, 27);
+						printf("\t%s", apply2[index].room);
+					}
+					else {
+						gotoxy(47, 27);
+						printf("\t%s", apply2[index].room);
+					}
+					gotoxy(72, 35);
+					scanf("%d%*c", &menu);
+					if (menu == 0) {
+						roommateList();
+					}
+					else if (menu == 1) {
+						if ((strcmp(apply2[index].check, "3") == 0)) {
+							message("     이미 승인이 완료된 학생입니다.");
+							roommateList();
+						}
+						else if ((strcmp(apply2[index].check, "1") == 0)) {
+							square(60, 30, 29, 3);
+							square_char(58, 2, 30, 4, "룸메이트 신청 승인");
+							square(60, 2, 29, 34);
+							gotoxy(34, 35);
+							printf("메뉴 입력 (0. 뒤로가기, 1. 승인) : ");
+							gotoxy(51, 18);
+							printf("방 호수 배정: ");
+							gotoxy(65, 18);
+							scanf("%s", apply2[index].room);
+							gotoxy(69, 35);
+							scanf("%d%*c", &menu);
+							if (menu == 0) {
+								roommateList();
+							}
+							else if (menu == 1) {
+								strcpy(apply2[index].check, "3");
+								mate_write();
+								for (int i = 0; i < count; i++) {
+									if (strcmp(join[i].st_num, apply[index].st_num) == 0) {
+										for (int j = 0; j < count; j++) {
+											if (strcmp(join[j].st_num, apply2[index].st_num) == 0) {
+												strcpy(join[i].room, apply2[index].room);
+												user_write();
+												strcpy(join[j].room, apply2[index].room);
+												user_write();
+											}
+										}
+									}
+								}
+								message("     룸메이트 승인이 완료되었습니다.");
+								roommateList();
+							}
+						}
+					}
+					else {
+						message("      입력 정보가 옳지 않습니다.");
+						roommateList();
+					}
+				}
+			}
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		roommateList();
+	}
+}
+void wcolor() // 관리자 학생 방 표시
+{
+	if (strcmp(join[tmp].room, "301") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 30, "301");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "302") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 26, "302");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "303") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 22, "303");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	
+	else if (strcmp(join[tmp].room, "304") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 18, "304");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "305") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 14, "305");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "306") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 10, "306");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "307") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 10, "307");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "308") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 14, "308");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "309") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 18, "309");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "310") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 22, "310");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "311") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 26, "311");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "312") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 30, "312");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "313") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 26, "313");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "314") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 22, "314");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "315") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 18, "315");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "316") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 14, "316");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "317") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 14, "317");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "318") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 18, "318");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "319") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 22, "319");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "320") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 26, "320");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "321") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 54, 26, "321");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "322") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 54, 22, "322");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "323") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 54, 18, "323");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "324") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 54, 14, "324");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+}
+void wcolor2()
+{
+	if (strcmp(join[tmp].room, "401") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 30, "401");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "402") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 26, "402");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "403") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 22, "403");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "404") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 18, "404");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "405") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 14, "405");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "406") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 6, 10, "406");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "407") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 10, "407");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "408") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 14, "408");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "409") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 18, "409");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "410") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 22, "410");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "411") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 26, "411");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "412") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 14, 30, "412");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "413") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 30, "413");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "414") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 26, "414");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "415") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 22, "415");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "416") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 18, "416");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "417") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 30, 14, "417");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "418") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 14, "418");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "419") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 18, "419");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "420") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 22, "420");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "421") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 26, "421");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "422") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 38, 30, "422");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "423") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 54, 26, "423");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "424") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		square_char(6, 3, 54, 22, "424");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "425") == 0) {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	square_char(6, 3, 54, 18, "425");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "426") == 0) {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	square_char(6, 3, 54, 14, "426");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+}
+void mcolor()
+{
+	if (strcmp(join[tmp].room, "501") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 30, "501");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "502") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 26, "502");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "503") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 22, "503");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "504") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 18, "504");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "505") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 14, "505");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "506") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 10, "506");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "507") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 10, "507");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "508") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 14, "508");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "509") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 18, "509");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "510") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 22, "510");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "511") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 26, "511");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "512") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 30, "512");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "513") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 26, "513");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "514") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 22, "514");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "515") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 18, "515");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "516") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 14, "516");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "517") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 14, "517");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+	}
+	else if (strcmp(join[tmp].room, "518") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 18, "518");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "519") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 22, "519");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "520") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 26, "520");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "521") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 54, 26, "521");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "522") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 54, 22, "522");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "523") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 54, 18, "523");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "524") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 54, 14, "524");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+}
+void mcolor2()
+{
+	if (strcmp(join[tmp].room, "601") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 30, "601");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "602") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 26, "602");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "603") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 22, "603");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "604") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 18, "604");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "605") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 14, "605");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "606") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 6, 10, "606");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "607") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 10, "607");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "608") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 14, "608");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "609") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 18, "609");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "610") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 22, "610");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "611") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 26, "611");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "612") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 14, 30, "612");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "613") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 30, "613");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "614") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 26, "614");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "615") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 22, "615");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "616") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 18, "616");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "617") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 30, 14, "617");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+	}
+	else if (strcmp(join[tmp].room, "618") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 14, "618");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "619") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 18, "619");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "620") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 22, "620");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "621") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 26, "621");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "622") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 38, 30, "622");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "623") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 54, 26, "623");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "624") == 0) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		square_char(6, 3, 54, 22, "624");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "625") == 0) {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+	square_char(6, 3, 54, 18, "625");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+	else if (strcmp(join[tmp].room, "626") == 0) {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+	square_char(6, 3, 54, 14, "626");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
+}
+void layerNumber2() { // 관리자 학생 방 확인 층
+	int menu = 0;
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "학생 방 조회");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 14, "1. 3층");
+	square_char(29, 2, 45, 17, "2. 4층");
+	square_char(29, 2, 45, 20, "3. 5층");
+	square_char(29, 2, 45, 23, "4. 6층");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managerUI();
+	}
+	else if (menu == 1) {
+		system("cls");
+		roomAssign();
+		womanColor();
+		roomCheck();
+	}
+	else if (menu == 2) {
+		system("cls");
+		roomAssign4();
+		womanColor2();
+		roomCheck();
+	}
+	else if (menu == 3) {
+		system("cls");
+		roomAssign5();
+		manColor();
+		roomCheck();
+	}
+	else if (menu == 4) {
+		system("cls");
+		roomAssign6();
+		manColor2();
+		roomCheck();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		layerNumber2();
+	}
+}
+void roomCheck() {
+	user input;
+	int menu = 0;
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "학생 방 확인");
+	square(60, 2, 68, 34);
+	gotoxy(86, 19);
+	printf("학생 방을 조회하시겠습니까?");
+	gotoxy(72, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		layerNumber2();
+	}
+	else if (menu == 1) {
+		square(60, 30, 68, 3);
+		square_char(58, 2, 69, 4, "학생 방 확인");
+		square(60, 2, 68, 34);
+		square(24, 2, 94, 17);
+		gotoxy(79, 18);
+		printf("방 호수 입력 : ");
+		gotoxy(72, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		gotoxy(104, 18);
+		scanf("%s", input.room);
+		gotoxy(107, 35);
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			roomCheck();
+		}
+		else if (menu == 1) {
+			int foundCount = 0;
+			int matchingIndices[2]; // 두 개의 학생 정보 인덱스를 저장할 배열
+
+			for (int i = 0; i < count && foundCount < 2; i++) {
+				if ((strcmp(input.room, join[i].room) == 0)) {
+					matchingIndices[foundCount] = i;
+					foundCount++;
+				}
+			}
+			if (foundCount == 1) {
+				matchingIndices[1] = -1; // 한 명만 있는 경우 두 번째 인덱스를 -1로 설정
+			}
+			else if (foundCount == 0) {
+				message("        배정된 학생이 없습니다.");
+				system("cls");
+				roomAssign();
+				womanColor();
+				roomCheck();
+			}
+			roomCheck2(matchingIndices[0], matchingIndices[1]);
+		}
+		else {
+			message("      입력 정보가 옳지 않습니다.");
+			roomCheck();
+		}
+	}
+}
+void roomCheck2(int index1, int index2) {
+	int menu = 0;
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "학생 방 확인");
+	square(60, 2, 68, 34);
+	gotoxy(88, 11);
+	printf("학생1 학번 : %s", join[index1].st_num);
+	gotoxy(89, 14);
+	printf("학생1 이름 : %s", join[index1].name);
+	gotoxy(69, 20);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	if (index2 != -1) {
+		gotoxy(88, 25);
+		printf("학생2 학번 : %s\n", join[index2].st_num);
+		gotoxy(89, 28);
+		printf("학생2 이름 : %s\n", join[index2].name);
+	}
+	else {
+		gotoxy(90, 25);
+		printf("학생2 학번 : 미정\n");
+		gotoxy(90, 28);
+		printf("학생2 이름 : 미정\n");
+	}
+	gotoxy(72, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 강제 퇴실) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		roomCheck();
+	}
+	else if (menu == 1) {
+		coercion();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+	}
+}
+void bubbleSort(user arr[], int n) { // 버블 정렬
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = 0; j < n - i - 1; j++) {
+			if (atoi(arr[j].room) > atoi(arr[j + 1].room)) { // room을 기준으로 오름차순 정렬
+				user temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+}
+void roomList() // 학생 방 배정 명단
+{
+	system("cls");
+	user input;
+	int menu = 0;
+	int displayIndex = 0, displayIndex1 = 0;
+	line_number = original_line_number;
+	square(60, 30, 3, 3);
+	square_char(58, 2, 4, 4, "학생 방 배정");
+	square(60, 30, 68, 3);
+	square(52, 2, 7, 8);
+	gotoxy(10, 9);
+	printf("순번     학번       이름      성별     방 호수");
+	square_char(58, 2, 69, 4, "학생 방 배정");
+	square(60, 2, 68, 34);
+	square(52, 2, 72, 8);
+	gotoxy(76, 9);
+	printf("순번     학번       이름      성별     방 호수");
+	bubbleSort(join, count);
+	for (int i = line; i < count; i++) {
+		if (i >= line && i <= line3) {
+			if ((strcmp(join[i].check2, "2") == 0)) {
+				if ((strcmp(join[i].room, "0") == 0)) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+				else {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+				}
+				if (line_number > 9) {
+					gotoxy(10, 13 + displayIndex * 3);
+					printf("%d", line_number);
+				}
+				else {
+					gotoxy(11, 13 + displayIndex * 3);
+					printf("%d", line_number);
+				}
+				gotoxy(17, 13 + displayIndex * 3);
+				printf("%s", join[i].st_num);
+				gotoxy(30, 13 + displayIndex * 3);
+				printf("%s", join[i].name);
+				gotoxy(40, 13 + displayIndex * 3);
+				printf("%s", join[i].gender);
+				gotoxy(51, 13 + displayIndex * 3);
+				printf("%s", join[i].room);
+				line_number++;
+				displayIndex++;
+			}
+		}
+		if (i >= line + 7 && i <= line3 + 7) {
+			if ((strcmp(join[i].check2, "2") == 0)) {
+				if ((strcmp(join[i].room, "0") == 0)) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+				else {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+				}
+				if (line_number > 9) {
+					gotoxy(76, 13 + displayIndex1 * 3);
+					printf("%d", line_number);
+				}
+				else {
+					gotoxy(77, 13 + displayIndex1 * 3);
+					printf("%d", line_number);
+				}
+				gotoxy(82, 13 + displayIndex1 * 3);
+				printf("%s", join[i].st_num);
+				gotoxy(96, 13 + displayIndex1 * 3);
+				printf("%s", join[i].name);
+				gotoxy(106, 13 + displayIndex1 * 3);
+				printf("%s", join[i].gender);
+				gotoxy(117, 13 + displayIndex1 * 3);
+				printf("%s", join[i].room);
+				line_number++;
+				displayIndex1++;
+			}
+		}
+	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	gotoxy(72, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 이전, 2. 다음, 3. 배정) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managerUI();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 14) {
+			line -= 14;
+			line3 -= 14;
+			original_line_number -= 14;
+		}
+		roomList();
+	}
+	else if (menu == 2) {
+		line += 14;
+		line3 += 14;
+		original_line_number += 14;
+		roomList();
+	}
+	else if (menu == 3) {
+		int rcount = 0;
+		int rcount1 = 0;
+		int high = 301, high1 = 401, high2 = 500, high3 = 601;
+		for (int i = 0; i < count; i++) {
+			int rcheck = atoi(join[i].room);
+			if (rcheck >= 301 && rcheck <= 324 && rcheck > high) {
+				high = rcheck;
+				high++;
+			}
+			else if (rcheck >= 501 && rcheck <= 524 && rcheck > high2) {
+				high2 = rcheck;
+				high2++;
+			}
+		}
+		for (int i = 0; i < count; i++) {
+			if ((strcmp(join[i].gender, "여자") == 0)&& (strcmp(join[i].room, "0") == 0)) {
+				if (high == 300) {
+					sprintf(join[i].room, "%d", room1);
+					if (rcount == 1) {
+						room1++;
+						rcount = 0;
+					}
+					else {
+						rcount++;
+					}
+				}
+				else if (high>= 301 && high <= 324) {
+					sprintf(join[i].room, "%d", high);
+					if (rcount == 1) {
+						high++; // 중복된 값이면 high를 1 증가
+						rcount = 0; // 초기화
+					}
+					else {
+						rcount++;
+					}
+				}
+				else if (high1>= 401 && high1 <= 426) {
+					sprintf(join[i].room, "%d", high1);
+					if (rcount == 1) {
+						high1++;
+						rcount = 0;
+					}
+					else {
+						rcount++;
+					}
+				}
+			}
+			else if ((strcmp(join[i].gender, "남자") == 0) && (strcmp(join[i].room, "0") == 0)) {
+				if (high2 == 500) {
+					sprintf(join[i].room, "%d", room3);
+					if (rcount1 == 1) {
+						room3++;
+						rcount1 = 0;
+					}
+					else {
+						rcount1++;
+					}
+				}
+				else if (high2 >= 501 && high2 <= 524) {
+					sprintf(join[i].room, "%d", high2);
+					if (rcount1 == 1) {
+						high2++;
+						rcount1 = 0;
+					}
+					else {
+						rcount1++;
+					}
+				}
+				else if (high3 >= 601 && high3 <= 626) {
+					sprintf(join[i].room, "%d", high3);
+					if (rcount1 == 1) {
+						high3++;
+						rcount1 = 0;
+					}
+					else {
+						rcount1++;
+					}
+				}
+			}
+		}
+		user_write();
+		message("      방 배정이 완료되었습니다.");
+		roomList();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		roomList();
+	}
+}
+void roomAssign() { // 여자층
+	square(60, 30, 3, 5);
+	square_char(58, 2, 4, 6, "여자 기숙사");
+	square_char(6, 3, 6, 30, "301"), square_char(6, 3, 6, 26, "302"), square_char(6, 3, 6, 22, "303");
+	square_char(6, 3, 6, 18, "304"), square_char(6, 3, 6, 14, "305"), square_char(6, 3, 6, 10, "306");
+	square_char(6, 3, 14, 10, "307"), square_char(6, 3, 14, 14, "308"), square_char(6, 3, 14, 18, "309");
+	square_char(6, 3, 14, 22, "310"), square_char(6, 3, 14, 26, "311"), square_char(6, 3, 14, 30, "312");
+	square_char(6, 3, 30, 26, "313"), square_char(6, 3, 30, 22, "314"), square_char(6, 3, 30, 18, "315"), square_char(6, 3, 30, 14, "316");
+	square_char(6, 3, 38, 14, "317"), square_char(6, 3, 38, 18, "318"), square_char(6, 3, 38, 22, "319"), square_char(6, 3, 38, 26, "320");
+	square_char(6, 3, 54, 26, "321"), square_char(6, 3, 54, 22, "322"), square_char(6, 3, 54, 18, "323"), square_char(6, 3, 54, 14, "324");
+}
+void roomAssign4(){ // 여자
+	square(60, 30, 3, 5);
+	square_char(58, 2, 4, 6, "여자 기숙사");
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "학생 방 배정");
+	square(60, 2, 68, 34);
+	square_char(6, 3, 6, 30, "401"), square_char(6, 3, 6, 26, "402"), square_char(6, 3, 6, 22, "403");
+	square_char(6, 3, 6, 18, "404"), square_char(6, 3, 6, 14, "405"), square_char(6, 3, 6, 10, "406");
+	square_char(6, 3, 14, 10, "407"), square_char(6, 3, 14, 14, "408"), square_char(6, 3, 14, 18, "409");
+	square_char(6, 3, 14, 22, "410"), square_char(6, 3, 14, 26, "411"), square_char(6, 3, 14, 30, "412");
+	square_char(6, 3, 30, 30, "413"), square_char(6, 3, 30, 26, "414"), square_char(6, 3, 30, 22, "415");
+	square_char(6, 3, 30, 18, "416"), square_char(6, 3, 30, 14, "417");
+	square_char(6, 3, 38, 14, "418"), square_char(6, 3, 38, 18, "419"), square_char(6, 3, 38, 22, "420");
+	square_char(6, 3, 38, 26, "421"), square_char(6, 3, 38, 30, "422");
+	square_char(6, 3, 54, 26, "423"), square_char(6, 3, 54, 22, "424"), square_char(6, 3, 54, 18, "425"), square_char(6, 3, 54, 14, "426");
+}
+void roomAssign5(){ // 남자
+	square(60, 30, 3, 5);
+	square_char(58, 2, 4, 6, "남자 기숙사");
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "학생 방 배정");
+	square(60, 2, 68, 34);
+	square_char(6, 3, 6, 30, "501"), square_char(6, 3, 6, 26, "502"), square_char(6, 3, 6, 22, "503");
+	square_char(6, 3, 6, 18, "504"), square_char(6, 3, 6, 14, "505"), square_char(6, 3, 6, 10, "506");
+	square_char(6, 3, 14, 10, "507"), square_char(6, 3, 14, 14, "508"), square_char(6, 3, 14, 18, "509");
+	square_char(6, 3, 14, 22, "510"), square_char(6, 3, 14, 26, "511"), square_char(6, 3, 14, 30, "512");
+	square_char(6, 3, 30, 26, "513"), square_char(6, 3, 30, 22, "514"), square_char(6, 3, 30, 18, "515"), square_char(6, 3, 30, 14, "516");
+	square_char(6, 3, 38, 14, "517"), square_char(6, 3, 38, 18, "518"), square_char(6, 3, 38, 22, "519"), square_char(6, 3, 38, 26, "520");
+	square_char(6, 3, 54, 26, "521"), square_char(6, 3, 54, 22, "522"), square_char(6, 3, 54, 18, "523"), square_char(6, 3, 54, 14, "524");
+}
+void roomAssign6(){ // 남자
+	square(60, 30, 3, 5);
+	square_char(58, 2, 4, 6, "남자 기숙사");
+	square(60, 30, 68, 3);
+	square_char(58, 2, 69, 4, "학생 방 배정");
+	square(60, 2, 68, 34);
+	square_char(6, 3, 6, 30, "601"), square_char(6, 3, 6, 26, "602"), square_char(6, 3, 6, 22, "603");
+	square_char(6, 3, 6, 18, "604"), square_char(6, 3, 6, 14, "605"), square_char(6, 3, 6, 10, "606");
+	square_char(6, 3, 14, 10, "607"), square_char(6, 3, 14, 14, "608"), square_char(6, 3, 14, 18, "609");
+	square_char(6, 3, 14, 22, "610"), square_char(6, 3, 14, 26, "611"), square_char(6, 3, 14, 30, "612");
+	square_char(6, 3, 30, 30, "613"), square_char(6, 3, 30, 26, "614"), square_char(6, 3, 30, 22, "615");
+	square_char(6, 3, 30, 18, "616"), square_char(6, 3, 30, 14, "617");
+	square_char(6, 3, 38, 14, "618"), square_char(6, 3, 38, 18, "619"), square_char(6, 3, 38, 22, "620");
+	square_char(6, 3, 38, 26, "621"), square_char(6, 3, 38, 30, "622");
+	square_char(6, 3, 54, 26, "623"), square_char(6, 3, 54, 22, "624"), square_char(6, 3, 54, 18, "625"), square_char(6, 3, 54, 14, "626");
+}
+void womanColor() // 관리자 방 배정 색
+{
+	int foundCount1 = 0, foundCount2 = 0, foundCount3 = 0, foundCount4 = 0, foundCount5 = 0, foundCount6 = 0, foundCount7 = 0, foundCount8 = 0, foundCount9 = 0, foundCount10 = 0;
+	int foundCount11 = 0, foundCount12 = 0, foundCount13 = 0, foundCount14 = 0, foundCount15 = 0, foundCount16 = 0, foundCount17 = 0, foundCount18 = 0, foundCount19 = 0;
+	int foundCount20 = 0, foundCount21 = 0, foundCount22 = 0, foundCount23 = 0, foundCount24 = 0, f = 0;
+	for (int i = 0; i < count; i++)
+	{
+		if (strcmp(join[i].room, "301") == 0) {
+			foundCount1++;
+			if (foundCount1 == 2){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 30, "301");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount1 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 30, "301");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "302") == 0){
+			foundCount2++;
+			if (foundCount2 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 26, "302");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount2 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 26, "302");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "303") == 0){
+			foundCount3++;
+			if (foundCount3 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 22, "303");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount3 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 22, "303");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "304") == 0){
+			foundCount4++;
+			if (foundCount4 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 18, "304");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount4 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 18, "304");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "305") == 0){
+			foundCount5++;
+			if (foundCount5 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 14, "305");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount5 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 14, "305");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "306") == 0){
+			foundCount6++;
+			if (foundCount6 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 10, "306");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount6 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 10, "306");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "307") == 0){
+			foundCount7++;
+			if (foundCount7 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 10, "307");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount7 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 10, "307");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "308") == 0){
+			foundCount8++;
+			if (foundCount8 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 14, "308");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount8 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 14, "308");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "309") == 0){
+			foundCount9++;
+			if (foundCount9 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 18, "309");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount9 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 18, "309");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "310") == 0){
+			foundCount10++;
+			if (foundCount10 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 22, "310");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount10 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 22, "310");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "311") == 0){
+			foundCount11++;
+			if (foundCount11 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 26, "311");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount11 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 26, "311");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "312") == 0){
+			foundCount12++;
+			if (foundCount12 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 30, "312");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount12 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 30, "312");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "313") == 0){
+			foundCount13++;
+			if (foundCount13 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 26, "313");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount13 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 26, "313");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "314") == 0){
+			foundCount14++;
+			if (foundCount14 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 22, "314");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount14 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 22, "314");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "315") == 0){
+			foundCount15++;
+			if (foundCount15 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 18, "315");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount15 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 18, "315");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "316") == 0){
+			foundCount16++;
+			if (foundCount16 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 14, "316");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount16 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 14, "316");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "317") == 0){
+			foundCount17++;
+			if (foundCount17 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 14, "317");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount17 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 14, "317");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "318") == 0){
+			foundCount18++;
+			if (foundCount18 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 18, "318");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount18 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 18, "318");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "319") == 0){
+			foundCount19++;
+			if (foundCount19 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 22, "319");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount19 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 22, "319");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "320") == 0){
+			foundCount20++;
+			if (foundCount20 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 26, "320");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount20 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 26, "320");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "321") == 0){
+			foundCount21++;
+			if (foundCount21 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 54, 26, "321");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount21 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 26, "321");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "322") == 0){
+			foundCount22++;
+			if (foundCount22 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 54, 22, "322");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount22 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 22, "322");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "323") == 0){
+			foundCount23++;
+			if (foundCount23 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 54, 18, "323");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount23 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 18, "323");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "324") == 0){
+			foundCount24++;
+			if (foundCount24 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 54, 14, "324");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount24 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 14, "324");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+	}
+}
+void womanColor2() {
+	int foundCount1 = 0, foundCount2 = 0, foundCount3 = 0, foundCount4 = 0, foundCount5 = 0, foundCount6 = 0, foundCount7 = 0, foundCount8 = 0, foundCount9 = 0, foundCount10 = 0;
+	int foundCount11 = 0, foundCount12 = 0, foundCount13 = 0, foundCount14 = 0, foundCount15 = 0, foundCount16 = 0, foundCount17 = 0, foundCount18 = 0, foundCount19 = 0;
+	int foundCount20 = 0, foundCount21 = 0, foundCount22 = 0, foundCount23 = 0, foundCount24 = 0, foundCount25 = 0, foundCount26 = 0;
+	for (int i = 0; i < count; i++)
+	{
+		if (strcmp(join[i].room, "401") == 0) {
+			foundCount1++;
+			if (foundCount1 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 30, "401");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount1 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 30, "401");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "402") == 0) {
+			foundCount2++;
+			if (foundCount2 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 26, "402");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount2 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 26, "402");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "403") == 0) {
+			foundCount3++;
+			if (foundCount3 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 22, "403");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount3 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 22, "403");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "404") == 0) {
+			foundCount4++;
+			if (foundCount4 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 18, "404");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount4 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 18, "404");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "405") == 0) {
+			foundCount5++;
+			if (foundCount5 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 14, "405");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount5 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 14, "405");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "406") == 0) {
+			foundCount6++;
+			if (foundCount6 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 6, 10, "406");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount6 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 10, "406");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "407") == 0) {
+			foundCount7++;
+			if (foundCount7 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 10, "407");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount7 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 10, "407");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "408") == 0) {
+			foundCount8++;
+			if (foundCount8 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 14, "408");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount8 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 14, "408");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "409") == 0) {
+			foundCount9++;
+			if (foundCount9 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 18, "409");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount9 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 18, "409");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "410") == 0) {
+			foundCount10++;
+			if (foundCount10 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 22, "410");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount10 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 22, "410");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "411") == 0) {
+			foundCount11++;
+			if (foundCount11 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 26, "411");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount11 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 26, "411");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "412") == 0) {
+			foundCount12++;
+			if (foundCount12 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 14, 30, "412");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount12 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 30, "412");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "413") == 0) {
+			foundCount13++;
+			if (foundCount13 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 30, "413");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount13 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 30, "413");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "414") == 0) {
+			foundCount14++;
+			if (foundCount14 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 26, "414");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount14 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 26, "414");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "415") == 0) {
+			foundCount15++;
+			if (foundCount15 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 22, "415");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount15 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 22, "415");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "416") == 0) {
+			foundCount16++;
+			if (foundCount16 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 18, "416");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount16 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 18, "416");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "417") == 0) {
+			foundCount17++;
+			if (foundCount17 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 30, 14, "417");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount17 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 14, "417");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "418") == 0) {
+			foundCount18++;
+			if (foundCount18 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 14, "418");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount18 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 14, "418");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "419") == 0) {
+			foundCount19++;
+			if (foundCount19 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 18, "419");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount19 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 18, "419");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "420") == 0) {
+			foundCount20++;
+			if (foundCount20 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 22, "420");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount20 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 22, "420");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "421") == 0) {
+			foundCount21++;
+			if (foundCount21 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 26, "421");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount21 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 26, "421");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "422") == 0) {
+			foundCount22++;
+			if (foundCount22 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 38, 30, "422");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount22 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 30, "422");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "423") == 0) {
+			foundCount23++;
+			if (foundCount23 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 54, 26, "423");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount23 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 26, "423");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "424") == 0) {
+			foundCount24++;
+			if (foundCount24 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 54, 22, "424");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount24 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 22, "424");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "425") == 0) {
+			foundCount25++;
+			if (foundCount25 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 54, 18, "425");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount25 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 18, "425");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "426") == 0) {
+			foundCount26++;
+			if (foundCount26 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+				square_char(6, 3, 54, 14, "426");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount26 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 14, "426");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+	}
+}
+void manColor() {
+	int foundCount1 = 0, foundCount2 = 0, foundCount3 = 0, foundCount4 = 0, foundCount5 = 0, foundCount6 = 0, foundCount7 = 0, foundCount8 = 0, foundCount9 = 0, foundCount10 = 0;
+	int foundCount11 = 0, foundCount12 = 0, foundCount13 = 0, foundCount14 = 0, foundCount15 = 0, foundCount16 = 0, foundCount17 = 0, foundCount18 = 0, foundCount19 = 0;
+	int foundCount20 = 0, foundCount21 = 0, foundCount22 = 0, foundCount23 = 0, foundCount24 = 0;
+	for (int i = 0; i < count; i++)
+	{
+		if (strcmp(join[i].room, "501") == 0) {
+			foundCount1++;
+			if (foundCount1 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 30, "501");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount1 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 30, "501");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "502") == 0) {
+			foundCount2++;
+			if (foundCount2 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 26, "502");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount2 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 26, "502");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "503") == 0) {
+			foundCount3++;
+			if (foundCount3 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 22, "503");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount3 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 22, "503");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "504") == 0) {
+			foundCount4++;
+			if (foundCount4 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 18, "504");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount4 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 18, "504");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "505") == 0) {
+			foundCount5++;
+			if (foundCount5 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 14, "505");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount5 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 14, "505");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "506") == 0) {
+			foundCount6++;
+			if (foundCount6 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 10, "506");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount6 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 10, "506");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "507") == 0) {
+			foundCount7++;
+			if (foundCount7 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 10, "507");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount7 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 10, "507");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "508") == 0) {
+			foundCount8++;
+			if (foundCount8 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 14, "508");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount8 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 14, "508");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "509") == 0) {
+			foundCount9++;
+			if (foundCount9 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 18, "509");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount9 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 18, "509");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "510") == 0) {
+			foundCount10++;
+			if (foundCount10 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 22, "510");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount10 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 22, "510");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "511") == 0) {
+			foundCount11++;
+			if (foundCount11 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 26, "511");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount11 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 26, "511");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "512") == 0) {
+			foundCount12++;
+			if (foundCount12 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 30, "512");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount12 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 30, "512");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "513") == 0) {
+			foundCount13++;
+			if (foundCount13 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 26, "513");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount13 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 26, "513");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "514") == 0) {
+			foundCount14++;
+			if (foundCount14 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 22, "514");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount14 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 22, "514");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "515") == 0) {
+			foundCount15++;
+			if (foundCount15 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 18, "515");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount15 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 18, "515");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "516") == 0) {
+			foundCount16++;
+			if (foundCount16 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 14, "516");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount16 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 14, "516");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "517") == 0) {
+			foundCount17++;
+			if (foundCount17 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 14, "517");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount17 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 14, "517");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "518") == 0) {
+			foundCount18++;
+			if (foundCount18 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 18, "518");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount18 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 18, "518");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "519") == 0) {
+			foundCount19++;
+			if (foundCount19 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 22, "519");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount19 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 22, "519");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "520") == 0) {
+			foundCount20++;
+			if (foundCount20 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 26, "520");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount20 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 26, "520");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "521") == 0) {
+			foundCount21++;
+			if (foundCount21 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 54, 26, "521");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount21 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 26, "521");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "522") == 0) {
+			foundCount22++;
+			if (foundCount22 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 54, 22, "522");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount22 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 22, "522");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "523") == 0) {
+			foundCount23++;
+			if (foundCount23 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 54, 18, "523");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount23 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 18, "523");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "524") == 0) {
+			foundCount24++;
+			if (foundCount24 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 54, 14, "524");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount24 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 14, "524");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+	}
+}
+void manColor2() {
+	int foundCount1 = 0, foundCount2 = 0, foundCount3 = 0, foundCount4 = 0, foundCount5 = 0, foundCount6 = 0, foundCount7 = 0, foundCount8 = 0, foundCount9 = 0, foundCount10 = 0;
+	int foundCount11 = 0, foundCount12 = 0, foundCount13 = 0, foundCount14 = 0, foundCount15 = 0, foundCount16 = 0, foundCount17 = 0, foundCount18 = 0, foundCount19 = 0;
+	int foundCount20 = 0, foundCount21 = 0, foundCount22 = 0, foundCount23 = 0, foundCount24 = 0, foundCount25 = 0, foundCount26 = 0;
+	for (int i = 0; i < count; i++)
+	{
+		if (strcmp(join[i].room, "601") == 0) {
+			foundCount1++;
+			if (foundCount1 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 30, "601");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount1 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 30, "601");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "602") == 0) {
+			foundCount2++;
+			if (foundCount2 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 26, "602");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount2 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 26, "602");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "603") == 0) {
+			foundCount3++;
+			if (foundCount3 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 22, "603");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount3 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 22, "603");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "604") == 0) {
+			foundCount4++;
+			if (foundCount4 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 18, "604");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount4 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 18, "604");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "605") == 0) {
+			foundCount5++;
+			if (foundCount5 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 14, "605");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount5 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 14, "605");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "606") == 0) {
+			foundCount6++;
+			if (foundCount6 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 6, 10, "606");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount6 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 6, 10, "606");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "607") == 0) {
+			foundCount7++;
+			if (foundCount7 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 10, "607");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount7 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 10, "607");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "608") == 0) {
+			foundCount8++;
+			if (foundCount8 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 14, "608");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount8 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 14, "608");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "609") == 0) {
+			foundCount9++;
+			if (foundCount9 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 18, "609");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount9 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 18, "609");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "610") == 0) {
+			foundCount10++;
+			if (foundCount10 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 22, "610");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount10 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 22, "610");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "611") == 0) {
+			foundCount11++;
+			if (foundCount11 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 26, "611");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount11 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 26, "611");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "612") == 0) {
+			foundCount12++;
+			if (foundCount12 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 14, 30, "612");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount12 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 14, 30, "612");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "613") == 0) {
+			foundCount13++;
+			if (foundCount13 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 30, "613");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount13 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 30, "613");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "614") == 0) {
+			foundCount14++;
+			if (foundCount14 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 26, "614");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount14 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 26, "614");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "615") == 0) {
+			foundCount15++;
+			if (foundCount15 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 22, "615");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount15 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 22, "615");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "616") == 0) {
+			foundCount16++;
+			if (foundCount16 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 18, "616");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount16 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 18, "616");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "617") == 0) {
+			foundCount17++;
+			if (foundCount17 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 30, 14, "617");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount17 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 30, 14, "617");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "618") == 0) {
+			foundCount18++;
+			if (foundCount18 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 14, "618");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount18 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 14, "618");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "619") == 0) {
+			foundCount19++;
+			if (foundCount19 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 18, "619");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount19 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 18, "619");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "620") == 0) {
+			foundCount20++;
+			if (foundCount20 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 22, "620");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount20 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 22, "620");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "621") == 0) {
+			foundCount21++;
+			if (foundCount21 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 26, "621");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount21 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 26, "621");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "622") == 0) {
+			foundCount22++;
+			if (foundCount22 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 38, 30, "622");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount22 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 38, 30, "622");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "623") == 0) {
+			foundCount23++;
+			if (foundCount23 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 54, 26, "623");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount23 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 26, "623");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "624") == 0) {
+			foundCount24++;
+			if (foundCount24 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 54, 22, "624");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount24 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 22, "624");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "625") == 0) {
+			foundCount25++;
+			if (foundCount25 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 54, 18, "625");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount25 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 18, "625");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+		if (strcmp(join[i].room, "626") == 0) {
+			foundCount26++;
+			if (foundCount26 == 2) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+				square_char(6, 3, 54, 14, "626");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else if (foundCount26 == 1) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+				square_char(6, 3, 54, 24, "626");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+		}
+	}
+}
+void sleepoutList() // 관리자 외박확인 
+{
+	line_number = original_line_number;
+	int menu = 0;
+	int displayIndex = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "외박 신청 명단");
+	square(60, 2, 29, 34);
+	square(52, 2, 33, 8);
+	gotoxy(37, 9);
+	printf("순번       학번        이름         전화번호");
+	for (int i = line; i < count1; i++) {
+			if (i >= line && i <= line3) {
+				if ((strcmp(out[i].check3, "2") == 0)) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+				}
+				else {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+				if (line_number > 9) {
+					gotoxy(37, 13 + displayIndex * 3);
+					printf("%d", line_number);
+				}
+				else {
+					gotoxy(38, 13 + displayIndex * 3);
+					printf("%d", line_number);
+				}
+				gotoxy(45, 13 + displayIndex * 3);
+				printf("%s", out[i].st_num);
+				gotoxy(59, 13 + displayIndex * 3);
+				printf("%s", out[i].name);
+				gotoxy(70, 13 + displayIndex * 3);
+				printf("%s", out[i].phone);
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				line_number++;
+				displayIndex++;
+			}
+	}
+	gotoxy(33, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 이전, 2. 다음, 3. 검색) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managementUI();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 7) {
+			line -= 7;
+			line3 -= 7;
+			original_line_number -= 7;
+		}
+		sleepoutList();
+	}
+	else if (menu == 2) {
+		line += 7;
+		line3 += 7;
+		original_line_number += 7;
+		sleepoutList();
+	}
+	else if (menu == 3) {
+		gotoxy(33, 35);
+		printf("메뉴 입력 (0. 뒤로가기) : ");
+		printf("                            ");
+		sleepoutSearch();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		sleepoutList();
+	}
+}
+void sleepoutSearch() 
+{
+	int searchMenu = 0;
+	gotoxy(60, 35);
+	scanf("%d%*c", &searchMenu);
+	if (searchMenu == 0) {
+		sleepoutList();
+	}
+	else if (searchMenu >= 1 && searchMenu <= 100) {
+		int menu = 0;
+		int index = searchMenu - 1; // 배열 인덱스로 변환
+		if (index < count1) {
+			square(60, 30, 29, 3);
+			square_char(58, 2, 30, 4, "외박 신청 승인");
+			square(60, 2, 29, 34);
+			square3();
+			square_char2(1, 4, 60, 8, " ");
+			square_char2(1, 4, 72, 8, " ");
+			square_char2(1, 4, 68, 12, " ");
+			square_char2(1, 4, 78, 12, " ");
+			square_char2(1, 25, 43, 8, " ");
+			gotoxy(35, 10);
+			printf("학번\t\t%s\n", out[index].st_num);
+			gotoxy(65, 10);
+			printf("이름\t\t\b\b%s\n", out[index].name);
+			gotoxy(72, 14);
+			printf("호실\t  %s호\n", out[index].room);
+			gotoxy(33, 14);
+			printf("전화번호\t  %s\n", out[index].phone);
+			gotoxy(33, 18);
+			printf("외박기간\t%s ~ %s\n", out[index].out, out[index].back);
+			gotoxy(33, 26);
+			printf("외박사유\t%s\n", out[index].reason);
+			gotoxy(34, 35);
+			printf("메뉴 입력 (0. 뒤로가기, 1. 승인) : ");
+			scanf("%d%*c", &menu);
+			if (menu == 0) {
+				line_number = original_line_number;
+				sleepoutList();
+			}
+			else if (menu == 1) {
+				if ((strcmp(out[index].check3, "2") == 0)) {
+					message("    이미 승인이 완료된 학생입니다.");
+					sleepoutList();
+				}
+				else if ((strcmp(out[index].check3, "1") == 0)) {
+					strcpy(out[index].check3, "2");
+					out_write();
+					message("      외박 승인이 완료되었습니다.");
+					sleepoutList();
+				}
+			}
+			else {
+				message("      입력 정보가 옳지 않습니다.");
+				sleepoutList();
+			}
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		sleepoutList();
+	}
+}
+void point() // 관리자 벌점 부여
+{
+	penalty input;
+	int menu = 0;
+	int found = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "벌점 부여");
+	square(60, 2, 29, 34);
+	gotoxy(44, 19);
+	printf("학생에게 벌점을 부여하시겠습니까?");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managerUI();
+	}
+	else if (menu == 1) {
+		system("cls");
+		square(60, 30, 68, 3);
+		square_char(58, 2, 69, 4, " 벌점 부여");
+		square(60, 2, 68, 34);
+		square(44, 2, 77, 11);
+		square(44, 2, 77, 17);
+		square(44, 2, 77, 23);
+		square(44, 2, 77, 29);
+		pointStandard();
+		gotoxy(78, 9);
+		printf("벌점 부여할 학생 학번 : ");
+		gotoxy(78, 15);
+		printf("벌점 부여할 학생 이름 : ");
+		gotoxy(78, 21);
+		printf("벌점 : ");
+		gotoxy(78, 27);
+		printf("벌점 부여 사유 : ");
+		gotoxy(73, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		gotoxy(81, 12);
+		scanf("%s", input.st_num);
+		gotoxy(81, 18);
+		scanf("%s", input.name);
+		gotoxy(81, 24);
+		scanf("%s", input.point);
+		gotoxy(81, 30);
+		scanf(" %[^\n]s", input.p_reason);
+		gotoxy(108, 35);
+		scanf(" %d%*c", &menu);
+		if (menu == 0) {
+			managerUI();
+		}
+		else if (menu == 1) {
+			for (int i = 0; i < count; i++) {
+				if ((strcmp(input.st_num, join[i].st_num) == 0) && (strcmp(input.name, join[i].name) == 0)) {
+					strcpy(score[count3].name, input.name);
+					strcpy(score[count3].st_num, input.st_num);
+					strcpy(score[count3].point, input.point);
+					strcpy(score[count3].p_reason, input.p_reason);
+					penalty_append();
+					found = 1;
+					message("        벌점을 부여하였습니다.");
+					managerUI();
+				}
+				else if ((strcmp(input.st_num, join[i].st_num) == 0) && (strcmp(join[i].total, "100") == 0)) {
+					point2();
+				}
+			}
+			if (!found) {
+				message("입력한 학번에 해당하는 정보가 없습니다.");
+				point();
+			}
+		}
+		else {
+			message("      입력 정보가 옳지 않습니다.");
+			point();
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		point();
+	}
+}
+void point2()
+{
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "벌점 부여");
+	square(60, 2, 29, 34);
+	gotoxy(43, 17);
+	printf("학생의 총 벌점이 100점이 되었습니다.");
+	gotoxy(49, 20);
+	printf("강제 퇴실하시겠습니까?");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (1. 확인, 2. 취소) : ");
+	scanf(" %d%*c", &menu);
+	if (menu == 1) {
+		coercion();
+	}
+	else if (menu == 2) {
+		managerUI();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		point2();
+	}
+}
+void coercion() // 관리자 강제퇴실
+{
+	system("cls");
+	user input;
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, " 강제 퇴실");
+	square(60, 2, 29, 34);
+	gotoxy(46, 19);
+	printf("학생을 강제 퇴실하시겠습니까?");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		layerNumber2();
+	}
+	else if (menu == 1) {
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, " 강제 퇴실");
+		square(60, 2, 29, 34);
+		square(24, 2, 59, 17);
+		square(24, 2, 59, 20);
+		gotoxy(35, 18);
+		printf("강제 퇴실할 학생 학번 : ");
+		gotoxy(35, 21);
+		printf("강제 퇴실할 학생 이름 : ");
+		gotoxy(34, 35);
+		printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+		gotoxy(67, 18);
+		scanf("%s", input.st_num);
+		gotoxy(68, 21);
+		scanf("%s", input.name);
+		gotoxy(69, 35);
+		scanf("%d%*c", &menu);
+		if (menu == 0) {
+			roomCheck();
+		}
+		else if (menu == 1) {
+			for (int i = 0; i < count; i++) {
+				if ((strcmp(input.st_num, join[i].st_num) == 0) && (strcmp(join[i].stop, "0") == 0)) {
+					message("   이미 회원을 강제 퇴실하였습니다.");
+					roomCheck();
+				}
+				else if ((strcmp(input.st_num, join[i].st_num) == 0) && (strcmp(input.name, join[i].name) == 0)) {
+					message("      회원을 강제 퇴실하였습니다.");
+					strcpy(join[i].stop, "0");
+					strcpy(join[i].room, "0");
+					user_write();
+					system("cls");
+					roomAssign();
+					womanColor();
+					roomCheck();
+				}
+			}
+			message("입력한 학번에 해당하는 정보가 없습니다.");
+			coercion();
+		}
+		else {
+			message("      입력 정보가 옳지 않습니다.");
+			coercion();
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		coercion();
+	}
+}
+void answer() // 관리자 문의사항
+{
+	system("cls");
+	line_number = original_line_number;
+	int menu = 0;
+	int displayIndex = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "문의사항");
+	square(60, 2, 29, 34);
+	square(58, 25, 30, 7);
+	square(52, 2, 33, 8);
+	gotoxy(37, 9);
+	printf("순번      학번      제목");
+	for (int i = 0; i < count4; i++) {
+		if (i >= line && i < line1) {
+			if ((strcmp(cont[i].answer_cont, "0") == 0)) {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			}
+			else {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+			}
+			if (line_number > 9) {
+				gotoxy(37, 12 + displayIndex * 3);
+				printf("%d", line_number);
+			}
+			else {
+				gotoxy(38, 12 + displayIndex * 3);
+				printf("%d", line_number);
+			}
+			gotoxy(45, 12 + displayIndex * 3);
+			printf("%s", cont[i].st_num);
+			gotoxy(57, 12 + displayIndex * 3);
+			printf("%s", cont[i].title);
+			line_number++;
+			displayIndex++;
+		}
+	}
+	gotoxy(33, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 이전, 2. 다음, 3. 검색) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managerUI();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 7) {
+			line -= 7;
+			line1 -= 7;
+			original_line_number -= 7;
+		}
+		answer();
+	}
+	else if (menu == 2) {
+		line += 7;
+		line1 += 7;
+		original_line_number += 7;
+		answer();
+	}
+	else if (menu == 3) {
+		gotoxy(33, 35);
+		printf("메뉴 입력 (0. 뒤로가기) : ");
+		printf("                            ");
+		answerCheck();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		answer();
+	}
+}
+void answerCheck() // 관리자 문의사항 답변
+{
+	int searchMenu = 0;
+	gotoxy(60, 35);
+	scanf("%d%*c", &searchMenu);
+	if (searchMenu == 0) {
+		answer();
+	}
+	else if (searchMenu >= 1 && searchMenu <= count4) {
+		inquire input;
+		int menu = 0;
+		int i = searchMenu - 1;
+		if (i < count4) {
+			if ((strcmp(cont[i].answer_cont, "0") == 0)) {
+				inquiryUI();
+				tmp2 = i;
+				gotoxy(17, 11);
+				printf("%s", cont[i].title);
+				gotoxy(17, 15);
+				printf("%s", cont[i].st_num);
+				gotoxy(17, 20);
+				printf("%s", cont[i].contents);
+				gotoxy(73, 35);
+				printf("메뉴 입력 (0. 뒤로가기, 1. 답변 등록) : ");
+				gotoxy(82, 13);
+				scanf("%s", input.answer_cont);
+				gotoxy(113, 35);
+				scanf("%d%*c", &menu);
+				if (menu == 0) {
+					system("cls");
+					answer();
+				}
+				else if (menu == 1) {
+					strcpy(cont[i].answer_cont, input.answer_cont);
+					inquire_write();
+					message("        답변이 등록되었습니다.");
+					answer();
+				}
+				else {
+					message("      입력 정보가 옳지 않습니다.");
+					answerCheck();
+				}
+			}
+			else {
+				inquiryUI();
+				gotoxy(17, 11);
+				printf("%s", cont[i].title);
+				gotoxy(17, 15);
+				printf("%s", cont[i].st_num);
+				gotoxy(17, 20);
+				printf("%s", cont[i].contents);
+				gotoxy(82, 13);
+				printf("%s", cont[i].answer_cont);
+				gotoxy(73, 35);
+				printf("메뉴 입력 (0. 뒤로가기, 1. 답변 수정) : ");
+				scanf("%d%*c", &menu);
+				if (menu == 0) {
+					answer();
+				}
+				else if (menu == 1) {
+					answerModify();
+				}
+				else {
+					message("      입력 정보가 옳지 않습니다.");
+					answer();
+				}
+			}
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		answer();
+	}
+}
+void answerModify()
+{
+	int menu = 0;
+	inquire input;
+	inquiryUI();
+	gotoxy(17, 11);
+	printf("%s", cont[tmp2].title);
+	gotoxy(17, 15);
+	printf("%s", cont[tmp2].st_num);
+	gotoxy(17, 20);
+	printf("%s", cont[tmp2].contents);
+	gotoxy(73, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 답변 수정) : ");
+	gotoxy(82, 13);
+	scanf(" %[^\n]s", input.answer_cont);
+	gotoxy(113, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		answer();
+	}
+	else if (menu == 1) {
+		strcpy(cont[tmp2].answer_cont, input.answer_cont);
+		strcpy(cont[tmp2].check, "0");
+		inquire_write();
+		message("        답변이 수정되었습니다.");
+		answer();
+	}
+	else {
+		answerModify();
+	}
+}
+void checkoutList() // 관리자 퇴실 신청 명단
+{
+	int menu = 0;
+	int startIndex = -1; // △가 있는 첫 번째 인덱스 초기화
+	int displayIndex = 0; // 출력될 인덱스
+
+	system("cls");
+	line_number = original_line_number;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "퇴실 신청 명단");
+	square(60, 2, 29, 34);
+	square(52, 2, 33, 8);
+	gotoxy(37, 9);
+	printf("순번     학번       이름       성별      호실");
+	for (int i = 0; i < count; i++) {
+		if ((strcmp(join[i].check4, "1") == 0) || (strcmp(join[i].check4, "2") == 0)) { // 첫 번째 인덱스 찾기
+			startIndex = i;
+			break;
+		}
+	}
+	if (startIndex != -1) {
+		for (int i = startIndex; i < count; i++) {
+			if ((strcmp(join[i].check4, "1") == 0) || (strcmp(join[i].check4, "2") == 0)) {
+				if (i >= line && i < line1) {
+					if ((strcmp(join[i].check4, "2") == 0)) {
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+					}
+					else {
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+					}
+					if (line_number > 9) {
+						gotoxy(37, 13 + displayIndex * 3);
+						printf("%d", line_number);
+					}
+					else {
+						gotoxy(38, 13 + displayIndex * 3);
+						printf("%d", line_number);
+					}
+					gotoxy(43, 13 + displayIndex * 3);
+					printf("%s", join[i].st_num);
+					gotoxy(56, 13 + displayIndex * 3);
+					printf("%s", join[i].name);
+					gotoxy(68, 13 + displayIndex * 3);
+					printf("%s", join[i].gender);
+					gotoxy(78, 13 + displayIndex * 3);
+					printf("%s호", join[i].room);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+					line_number++;
+					displayIndex++;
+				}
+			}
+		}
+	}
+	gotoxy(33, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 이전, 2. 다음, 3. 검색) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managementUI();
+	}
+	else if (menu == 1) {
+		if (original_line_number > 7) {
+			line -= 7;
+			line1 -= 7;
+			original_line_number -= 7;
+		}
+		checkoutList();
+	}
+	else if (menu == 2) {
+		line += 7;
+		line1 += 7;
+		original_line_number += 7;
+		checkoutList();
+	}
+	else if (menu == 3) {
+		checkoutSearch();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		checkoutList();
+	}
+}
+void checkoutSearch() //관리자 퇴실 학생 검색
+{
+	int menu = 0;
+	int searchMenu = 0;
+	int startIndex = -1;
+
+	gotoxy(33, 35);
+	printf("메뉴 입력 (0. 뒤로가기) : ");
+	printf("                            ");
+	gotoxy(60, 35);
+	scanf("%d%*c", &searchMenu);
+	if (searchMenu == 0) {
+		line_number = original_line_number;
+		checkoutList();
+	}
+	else if (searchMenu >= 1 && searchMenu <= count) {
+		int memberIndex = startIndex; 
+		int countDisplayed = 0;
+
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "퇴실 신청 승인");
+		square(60, 2, 29, 34);
+		while (memberIndex < count && countDisplayed < searchMenu) {
+			if (memberIndex >= startIndex && (strcmp(join[memberIndex].check4, "1") == 0 || strcmp(join[memberIndex].check4, "2") == 0)) {
+				countDisplayed++; 
+				if (countDisplayed == searchMenu) {
+					square3();
+					square_char2(1, 12, 41, 8, " ");
+					square_char2(1, 12, 62, 8, " ");
+					square_char2(1, 12, 70, 8, " ");
+					gotoxy(34, 10);
+					printf("학번\t\t%s\n", join[memberIndex].st_num);
+					gotoxy(65, 10);
+					printf("이름\t     %s\n", join[memberIndex].name);
+					gotoxy(32, 14);
+					printf("생년월일\t  %s\n", join[memberIndex].birth);
+					gotoxy(65, 14);
+					printf("성별\t      %s\n", join[memberIndex].gender);
+					gotoxy(34, 18);
+					printf("호실\t\t  %s호", join[memberIndex].room);
+					gotoxy(65, 18);
+					printf("벌점\t      %s점", join[memberIndex].total);
+					gotoxy(49, 26);
+					printf("퇴실 승인하시겠습니까?");
+				}
+			}
+			memberIndex++;
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		checkoutList();
+	}
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 승인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		checkoutList();
+	}
+	else if (menu == 1) {
+		for (int i = 0; i < count; i++) {
+			if ((strcmp(join[i].check4, "1") == 0)) {
+				strcpy(join[i].check4, "2");
+				user_write();
+				message("      퇴실 승인이 완료되었습니다.");
+				checkoutList();
+			}
+			else if ((strcmp(join[i].check4, "2") == 0)) {
+				message("  이미 퇴실 승인이 완료된 학생입니다.");
+				checkoutList();
+			}
+		}
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		checkoutList();
+	}
+}
+void checkList() { // 관리자 학생 조회 명단
+	int menu = 0;
+	int displayIndex = 0; // 출력될 인덱스
+	system("cls");
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "학생 조회");
+	square(60, 2, 29, 34);
+	square(49, 2, 35, 8);
+	gotoxy(40, 9);
+	printf(" 학번        이름       지역        성별 ");
+
+	for (int i = line; i <= count; i++) {
+		if (i >= line && i <= line1) {
+			if (strcmp(join[i].check2, "2") == 0) {
+				gotoxy(38, 13 + displayIndex * 3);
+				printf("%s", join[i].st_num);
+				gotoxy(52, 13 + displayIndex * 3);
+				printf("%s", join[i].name);
+				gotoxy(63, 13 + displayIndex * 3);
+				printf("%s", join[i].region);
+				gotoxy(76, 13 + displayIndex * 3);
+				printf("%s", join[i].gender);
+				displayIndex++;
+				if (displayIndex >= 7) { // 화면에 7명까지 출력
+					break;
+				}
+			}
+		}
+	}
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기,1. 이전, 2. 다음, 3. 조회) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managerUI();
+	}
+	else if (menu == 1) {
+		line -= 7;
+		line1 -= 7;
+		checkList();
+	}
+	else if (menu == 2) {
+		line += 7;
+		line1 += 7;
+		checkList();
+	}
+	else if (menu == 3) {
+		managerCheck();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		checkList();
+	}
+}
+void managerCheck(){ // 관리자 학생 학번 조회
+	user input;
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "학생 정보 조회");
+	square(60, 2, 29, 34);
+	gotoxy(49, 18);
+	printf("학생 학번 : ");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	gotoxy(61, 18);
+	scanf("%s%*c", input.st_num);
+	gotoxy(69, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		checkList();
+	}
+	else if (menu == 1) {
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "학생 정보 조회");
+		square(60, 2, 29, 34);
+		for (int i = 0; i < count; i++){
+			if (strcmp(input.st_num, join[i].st_num) == 0) {
+				tmp = i;
+				managerCheck2();
+			}
+		}
+		message("입력한 학번에 해당하는 정보가 없습니다.");
+		checkList();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		managerCheck();
+	}
+}
+void managerCheck2() { // 관리자 학생 정보 조회
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "학생 정보 조회");
+	square(60, 2, 29, 34);
+	check2();
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 수정) : ");
+	gotoxy(68, 35);
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		checkList();
+	}
+	else if (menu == 1) {
+		managerModify();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		managerCheck2();
+	}
+}
+void managerModify() // 관리자 학생 정보 수정
+{
+	int menu = 0;
+	user input;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "학생 정보 수정");
+	square(60, 2, 29, 34);
+	square_char(29, 2, 45, 16, "1. 이름");
+	square_char(29, 2, 45, 19, "2. 생년월일");
+	square_char(29, 2, 45, 22, "3. 지역");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 4. 삭제) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0){
+		managerCheck2();
+	}
+	else if (menu == 4){
+		managerDelete();
+	}
+	else if (menu == 1){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "학생 정보 수정");
+		square(24, 2, 55, 17);
+		gotoxy(41, 18);
+		printf("수정할 이름 : ");
+		gotoxy(64, 18);
+		scanf("%s", join[tmp].name);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		managerCheck2();
+	}
+	else if (menu == 2){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "학생 정보 수정");
+		square(24, 2, 57, 17);
+		gotoxy(39, 18);
+		printf("수정할 생년월일 : ");
+		gotoxy(66, 18);
+		scanf("%s", join[tmp].birth);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		managerCheck2();
+	}
+	else if (menu == 3){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "학생 정보 수정");
+		square(24, 2, 55, 17);
+		gotoxy(41, 18);
+		printf("수정할 지역 : ");
+		gotoxy(64, 18);
+		scanf("%s", join[tmp].region);
+		if ((strcmp(join[tmp].region, "충청북도") == 0)) {
+			strcpy(join[tmp].distance, "60");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경기도") == 0)) {
+			strcpy(join[tmp].distance, "120");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "강원도") == 0)) {
+			strcpy(join[tmp].distance, "210");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "충청남도") == 0)) {
+			strcpy(join[tmp].distance, "90");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라북도") == 0)) {
+			strcpy(join[tmp].distance, "150");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라남도") == 0)) {
+			strcpy(join[tmp].distance, "270");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상북도") == 0)) {
+			strcpy(join[tmp].distance, "180");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상남도") == 0)) {
+			strcpy(join[tmp].distance, "240");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "제주도") == 0)) {
+			strcpy(join[tmp].distance, "300");
+			user_write();
+		}
+		user_write();
+		message("        수정이 완료되었습니다.");
+		managerCheck2();
+	}
+	else if (menu == 12){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "학생 정보 수정");
+		square(24, 2, 55, 15);
+		square(24, 2, 55, 18);
+		gotoxy(41, 16);
+		printf("수정할 이름 : ");
+		gotoxy(39, 19);
+		printf("수정할 생년월일 : ");
+		gotoxy(64, 16);
+		scanf("%s", join[tmp].name);
+		gotoxy(66, 19);
+		scanf("%s", join[tmp].birth);
+		user_write();
+		message("        수정이 완료되었습니다.");
+		managerCheck2();
+	}
+	else if (menu == 13){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "학생 정보 수정");
+		square(24, 2, 55, 15);
+		square(24, 2, 55, 18);
+		gotoxy(41, 16);
+		printf("수정할 이름 : ");
+		gotoxy(41, 19);
+		printf("수정할 지역 : ");
+		gotoxy(64, 16);
+		scanf("%s", join[tmp].name);
+		gotoxy(64, 19);
+		scanf("%s", join[tmp].region);
+		if ((strcmp(join[tmp].region, "충청북도") == 0)) {
+			strcpy(join[tmp].distance, "60");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경기도") == 0)) {
+			strcpy(join[tmp].distance, "120");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "강원도") == 0)) {
+			strcpy(join[tmp].distance, "210");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "충청남도") == 0)) {
+			strcpy(join[tmp].distance, "90");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라북도") == 0)) {
+			strcpy(join[tmp].distance, "150");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라남도") == 0)) {
+			strcpy(join[tmp].distance, "270");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상북도") == 0)) {
+			strcpy(join[tmp].distance, "180");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상남도") == 0)) {
+			strcpy(join[tmp].distance, "240");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "제주도") == 0)) {
+			strcpy(join[tmp].distance, "300");
+			user_write();
+		}
+		user_write();
+		message("        수정이 완료되었습니다.");
+		managerCheck2();
+	}
+	else if (menu == 23){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "학생 정보 수정");
+		square(24, 2, 56, 15);
+		square(24, 2, 56, 18);
+		gotoxy(39, 16);
+		printf("수정할 생년월일 : ");
+		gotoxy(41, 19);
+		printf("수정할 지역 : ");
+		gotoxy(64, 16);
+		scanf("%s", join[tmp].birth);
+		gotoxy(65, 19);
+		scanf("%s", join[tmp].region);
+		if ((strcmp(join[tmp].region, "충청북도") == 0)) {
+			strcpy(join[tmp].distance, "60");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경기도") == 0)) {
+			strcpy(join[tmp].distance, "120");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "강원도") == 0)) {
+			strcpy(join[tmp].distance, "210");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "충청남도") == 0)) {
+			strcpy(join[tmp].distance, "90");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라북도") == 0)) {
+			strcpy(join[tmp].distance, "150");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라남도") == 0)) {
+			strcpy(join[tmp].distance, "270");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상북도") == 0)) {
+			strcpy(join[tmp].distance, "180");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상남도") == 0)) {
+			strcpy(join[tmp].distance, "240");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "제주도") == 0)) {
+			strcpy(join[tmp].distance, "300");
+			user_write();
+		}
+		user_write();
+		message("        수정이 완료되었습니다.");
+		managerCheck2();
+	}
+	else if (menu == 123){
+		system("cls");
+		square(60, 30, 29, 3);
+		square_char(58, 2, 30, 4, "학생 정보 수정");
+		square(24, 2, 57, 14);
+		square(24, 2, 57, 17);
+		square(24, 2, 57, 20);
+		gotoxy(41, 15);
+		printf("수정할 이름 : ");
+		gotoxy(39, 18);
+		printf("수정할 생년월일 : ");
+		gotoxy(41, 21);
+		printf("수정할 지역 : ");
+		gotoxy(66, 15);
+		scanf("%s", join[tmp].name);
+		gotoxy(65, 18);
+		scanf("%s", join[tmp].birth);
+		gotoxy(66, 21);
+		scanf("%s", join[tmp].region);
+		if ((strcmp(join[tmp].region, "충청북도") == 0)) {
+			strcpy(join[tmp].distance, "60");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경기도") == 0)) {
+			strcpy(join[tmp].distance, "120");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "강원도") == 0)) {
+			strcpy(join[tmp].distance, "210");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "충청남도") == 0)) {
+			strcpy(join[tmp].distance, "90");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라북도") == 0)) {
+			strcpy(join[tmp].distance, "150");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "전라남도") == 0)) {
+			strcpy(join[tmp].distance, "270");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상북도") == 0)) {
+			strcpy(join[tmp].distance, "180");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "경상남도") == 0)) {
+			strcpy(join[tmp].distance, "240");
+			user_write();
+		}
+		else if ((strcmp(join[tmp].region, "제주도") == 0)) {
+			strcpy(join[tmp].distance, "300");
+			user_write();
+		}
+		user_write();
+		message("        수정이 완료되었습니다.");
+		managerCheck2();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		managerModify();
+	}
+}
+void managerDelete() // 관리자 학생 정보 삭제
+{
+	int menu = 0;
+	square(60, 30, 29, 3);
+	square_char(58, 2, 30, 4, "학생 정보 삭제");
+	square(60, 2, 29, 34);
+	gotoxy(30, 27);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(49, 10);
+	printf("  이름 :     %s", join[tmp].name);
+	gotoxy(49, 13);
+	printf("  학번 :    %s", join[tmp].st_num);
+	gotoxy(49, 16);
+	printf("생년월일 :   %s", join[tmp].birth);
+	gotoxy(49, 19);
+	printf("  성별 :      %s", join[tmp].gender);
+	gotoxy(49, 22);
+	printf("  지역 :    %s", join[tmp].region);
+	gotoxy(45, 30);
+	printf("이 학생을 삭제 하시겠습니까?");
+	gotoxy(34, 35);
+	printf("메뉴 입력 (0. 뒤로가기, 1. 확인) : ");
+	scanf("%d%*c", &menu);
+	if (menu == 0) {
+		managerModify();
+	}
+	else if (menu == 1) {
+		strcpy(join[tmp].name, "");
+		strcpy(join[tmp].st_num, "");
+		strcpy(join[tmp].pw, "");
+		strcpy(join[tmp].birth, "");
+		strcpy(join[tmp].gender, "");
+		strcpy(join[tmp].region, "");
+		strcpy(join[tmp].distance, "");
+		strcpy(join[tmp].room, "");
+		strcpy(join[tmp].stop, "");
+		strcpy(join[tmp].check2, "");
+		strcpy(join[tmp].check4, "");
+		strcpy(join[tmp].total, "");
+		user_delete_write();
+		message("            삭제되었습니다.");
+		checkList();
+	}
+	else {
+		message("      입력 정보가 옳지 않습니다.");
+		managerDelete();
+	}
+}
+void message(char* msg) //메세지 창
+{
+	system("cls");
+	square(60, 30, 29, 3); // 가로, 세로, 가로 공백, 세로 공백 // 큰 상자 테두리
+	square_char(58, 2, 30, 4, " 기숙사");
+	gotoxy(41, 19);
+	printf("%s", msg);
+	Sleep(TWO);
+}
+void goto_xy(int x, int y) //상자 위치 옮기는 함수
+{
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD pos;
+	pos.X = x;
+	pos.Y = y;
+	SetConsoleCursorPosition(handle, pos);
+}
+void gotoxy(int x, int y) //입력 커서 옮기는 함수
+{
+	COORD pos = { x,y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+void square(int width, int height, int x, int y) // 상자 그리기
+{
+	goto_xy(x, y);
+	for (int i = 0; i < width; i++) {
+		if (i == 0) printf("┏");
+		else if (i == width - 1) printf("┓\n");
+		else  printf("━");
+	}
+	goto_xy(x, y + 1);
+	for (int j = 0; j < height; j++) {
+		printf("┃");
+		for (int k = 0; k < width - 2; k++) {
+			printf(" ");
+		}
+		printf("┃\n");
+		goto_xy(x, y + (j + 1));
+	}
+	for (int m = 0; m < width; m++) {
+		if (m == 0) printf("┗");
+		else if (m == width - 1) printf("┛\n");
+		else printf("━");
+	}
+	goto_xy(0, 30);
+}
+void square1(int width, int height, int x, int y, char *msg)
+{
+	goto_xy(x, y);
+	for (int i = 0; i < width; i++) {
+		if (i == 0) printf("┏");
+		else if (i == width - 1) printf("┓\n");
+		else  printf("━");
+	}
+	goto_xy(x, y + 1);
+	for (int j = 0; j < height; j++) {
+		printf("┣");
+		for (int k = 0; k < width - 31; k++) {
+			printf("━ ");
+		}
+		printf("┫\n");
+		goto_xy(x, y + (j + 1));
+	}
+	for (int m = 0; m < width; m++) {
+		if (m == 0) printf("┗");
+		else if (m == width - 1) printf("┛\n");
+		else printf("━");
+	}
+	goto_xy(0, 30);
+}
+void square2() // 가로줄
+{
+
+	gotoxy(30, 9);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 13);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 17);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 21);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 25);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 29);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 33);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+} // 가로 줄 printf
+void square3() { // 가로줄2
+	gotoxy(30, 8);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 12);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 16);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	gotoxy(30, 20);
+	printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+}
+void square_char(int width, int height, int x, int y, char* msg)
+{
+	goto_xy(x, y);
+	for (int i = 0; i < width; i++) {
+		if (i == 0) printf("┏");
+		else if (i == width - 1) printf("┓\n");
+		else  printf("━");
+	}
+	goto_xy(x, y + 1);
+	for (int j = 0; j < height; j++) {
+		printf("┃");
+		for (int k = 0; k < width - 2; k++) {
+			if (j == height / 2 && k == ((width)-strlen(msg)) / 2) {
+				goto_xy(x + ((width)-strlen(msg)) / 2 + 1, y + height / 2);
+				printf("%s", msg);
+				goto_xy(x + width - 1, y + j);
+			}
+			else if (j != height / 2) printf(" ");
+		}
+
+		printf("┃");
+		goto_xy(x, y + (j + 1));
+	}
+	for (int m = 0; m < width; m++) {
+		if (m == 0) printf("┗");
+		else if (m == width - 1) printf("┛\n");
+		else printf("━");
+	}
+	goto_xy(0, 40);
+} // 상자 안에 글씨쓰기
+void square_char2(int width, int height, int x, int y, char* msg)
+{
+	goto_xy(x, y);
+	for (int i = 0; i < width; i++) {
+		if (i == 0) printf("┏ ");
+		else if (i == width - 1) printf("┓\n");
+		else  printf("━");
+	}
+	goto_xy(x, y + 1);
+	for (int j = 0; j < height; j++) {
+		printf("┃");
+		for (int k = 0; k < width - 2; k++) {
+			if (j == height / 2 && k == ((width)-strlen(msg)) / 2) {
+				goto_xy(x + ((width)-strlen(msg)) / 2 + 1, y + height / 2);
+				printf("%s", msg);
+				goto_xy(x + width - 1, y + j);
+			}
+			else if (j != height / 2) printf(" ");
+		}
+		goto_xy(x, y + (j + 1));
+	}
+	for (int m = 0; m < width; m++) {
+		if (m == 0) printf("┗");
+		else if (m == width - 1) printf("┛\n");
+		else printf("━");
+	}
+	goto_xy(0, 40);
+}
+void square_char3(int width, int height, int x, int y, char* msg) //┫, ┣ 좌상단 우상단 ┣  ┨
+{
+	goto_xy(x, y);
+	for (int i = 0; i < width; i++) {
+		if (i == width - 1) printf("┓\n");
+		else  printf("━");
+	}
+	goto_xy(x, y + 1);
+	for (int j = 0; j < height; j++) {
+		for (int k = 0; k < width - 2; k++) {
+			if (j == height / 2 && k == ((width)-strlen(msg)) / 2) {
+				goto_xy(x + ((width)-strlen(msg)) / 2 + 1, y + height / 2);
+				printf("%s", msg);
+				goto_xy(x + width - 1, y + j);
+			}
+			else if (j != height / 2) printf(" ");
+		}
+
+		printf("┃");
+		goto_xy(x, y + (j + 1));
+	}
+	for (int m = 0; m < width; m++) {
+		if (m == width - 1) printf("┛\n");
+		else printf("━");
+	}
+	goto_xy(0, 40);
+}
+
+void user_append()
+{
+	FILE* fp = fopen("user.txt", "a");
+	fprintf(fp, "%s  ", join[count].name);
+	fprintf(fp, "%s  ", join[count].st_num);
+	fprintf(fp, "%s  ", join[count].pw);
+	fprintf(fp, "%s  ", join[count].birth);
+	fprintf(fp, "%s  ", join[count].gender);
+	fprintf(fp, "%s  ", join[count].region);
+	fprintf(fp, "%s  ", join[count].distance);
+	fprintf(fp, "%s  ", join[count].room);
+	fprintf(fp, "%s  ", join[count].stop);
+	fprintf(fp, "%s  ", join[count].check2);
+	fprintf(fp, "%s  ", join[count].check4);
+	fprintf(fp, "%s", join[count].total);
+	fprintf(fp, "\n");
+	count++;
+	fclose(fp);
+}
+void user_read()
+{
+	FILE* fp = fopen("user.txt", "r");
+	if (fp == NULL)
+		return 0;
+	while (1) {
+		fscanf(fp, "%s  ", &join[count].name);
+		fscanf(fp, "%s  ", &join[count].st_num);
+		fscanf(fp, "%s  ", &join[count].pw);
+		fscanf(fp, "%s  ", &join[count].birth);
+		fscanf(fp, "%s  ", &join[count].gender);
+		fscanf(fp, "%s  ", &join[count].region);
+		fscanf(fp, "%s  ", &join[count].distance);
+		fscanf(fp, "%s  ", &join[count].room);
+		fscanf(fp, "%s  ", &join[count].stop);
+		fscanf(fp, "%s  ", &join[count].check2);
+		fscanf(fp, "%s  ", &join[count].check4);
+		fscanf(fp, "%s", &join[count].total);
+		if (feof(fp) != 0) //파일의 끝을 만나면
+			break;
+		count++;
+	}
+	fclose(fp);
+}
+void user_write()
+{
+	FILE* fp1 = fopen("user.txt", "w");
+	for (int i = 0; i < count; i++)
+	{
+		fprintf(fp1, "%s  ", join[i].name);
+		fprintf(fp1, "%s  ", join[i].st_num);
+		fprintf(fp1, "%s  ", join[i].pw);
+		fprintf(fp1, "%s  ", join[i].birth);
+		fprintf(fp1, "%s  ", join[i].gender);
+		fprintf(fp1, "%s  ", join[i].region);
+		fprintf(fp1, "%s  ", join[i].distance);
+		fprintf(fp1, "%s  ", join[i].room);
+		fprintf(fp1, "%s  ", join[i].stop);
+		fprintf(fp1, "%s  ", join[i].check2);
+		fprintf(fp1, "%s  ", join[i].check4);
+		fprintf(fp1, "%s", join[i].total);
+		fprintf(fp1, "\n");
+	}
+	fclose(fp1);
+}
+void user_delete_write()
+{
+	//이름이 null이 아닌 회원들만 write, count1 = 새롭게 반복돌리는 횟수, 반복돌린 횟수만큼 count에 대입하여 전체회원수 - 탈퇴한 회원수
+	int count1 = 0;
+	FILE* fp1 = fopen("user.txt", "w");
+	for (int i = 0; i < count; i++)
+	{
+		if (strcmp(join[i].name, "") != 0)
+		{
+			fprintf(fp1, "%s  ", join[i].name);
+			fprintf(fp1, "%s  ", join[i].st_num);
+			fprintf(fp1, "%s  ", join[i].pw);
+			fprintf(fp1, "%s  ", join[i].birth);
+			fprintf(fp1, "%s  ", join[i].gender);
+			fprintf(fp1, "%s  ", join[i].region);
+			fprintf(fp1, "%s  ", join[i].distance);
+			fprintf(fp1, "%s  ", join[i].room);
+			fprintf(fp1, "%s  ", join[i].stop);
+			fprintf(fp1, "%s  ", join[i].check2);
+			fprintf(fp1, "%s  ", join[i].check4);
+			fprintf(fp1, "%s", join[i].total);
+			fprintf(fp1, "\n");
+		}
+		count1++;
+	}
+	count = count1;
+	fclose(fp1);
+}
+void mate_append()
+{
+	FILE* fp = fopen("roommate.txt", "a");
+	fprintf(fp, "%s  ", apply[count2].name);
+	fprintf(fp, "%s  ", apply[count2].st_num);
+	fprintf(fp, "%s  ", apply2[count2].name);
+	fprintf(fp, "%s  ", apply2[count2].st_num);
+	fprintf(fp, "%s  ", apply2[count2].room);
+	fprintf(fp, "%s", apply2[count2].check);
+	fprintf(fp, "\n");
+	count2++;
+	fclose(fp);
+}
+void mate_read()
+{
+	FILE* fp = fopen("roommate.txt", "r");
+	if (fp == NULL)
+		return 0;
+	while (1) {
+		fscanf(fp, "%s  ", &apply[count2].name);
+		fscanf(fp, "%s  ", &apply[count2].st_num);
+		fscanf(fp, "%s  ", &apply2[count2].name);
+		fscanf(fp, "%s  ", &apply2[count2].st_num);
+		fscanf(fp, "%s  ", &apply2[count2].room);
+		fscanf(fp, "%s", &apply2[count2].check);
+		if (feof(fp) != 0)
+			break;
+		count2++;
+	}
+	fclose(fp);
+}
+void mate_write()
+{
+	FILE* fp1 = fopen("roommate.txt", "w");
+	for (int i = 0; i < count2; i++){
+		fprintf(fp1, "%s  ", apply[i].name);
+		fprintf(fp1, "%s  ", apply[i].st_num);
+		fprintf(fp1, "%s  ", apply2[i].name);
+		fprintf(fp1, "%s  ", apply2[i].st_num);
+		fprintf(fp1, "%s  ", apply2[i].room);
+		fprintf(fp1, "%s", apply2[i].check);
+		fprintf(fp1, "\n");
+	}
+	fclose(fp1);
+}
+void mate_delete_write()
+{
+	int count1 = 0;
+	FILE* fp1 = fopen("roommate.txt", "w");
+	for (int i = 0; i < count2; i++)
+	{
+		if ((strcmp(apply[i].name, "") != 0) && (strcmp(apply2[i].name, "") != 0))
+		{
+			fprintf(fp1, "%s  ", apply[i].name);
+			fprintf(fp1, "%s  ", apply[i].st_num);
+			fprintf(fp1, "%s  ", apply2[i].name);
+			fprintf(fp1, "%s  ", apply2[i].st_num);
+			fprintf(fp1, "%s  ", apply2[i].room);
+			fprintf(fp1, "%s", apply2[i].check);
+			fprintf(fp1, "\n");
+		}
+		count1++;
+	}
+	count2 = count1;
+	fclose(fp1);
+}
+void out_append()
+{
+	FILE* fp = fopen("sleepout.txt", "a");
+	fprintf(fp, "%s  ", out[count1].check3);
+	fprintf(fp, "%s  ", out[count1].name);
+	fprintf(fp, "%s  ", out[count1].st_num);
+	fprintf(fp, "%s  ", out[count1].phone);
+	fprintf(fp, "%s  ", out[count1].room);
+	fprintf(fp, "%s  ", out[count1].out);
+	fprintf(fp, "%s  ", out[count1].back);
+	fprintf(fp, "%s", out[count1].reason);
+	fprintf(fp, "\n");
+	count1++;
+	fclose(fp);
+}
+void out_read()
+{
+	FILE* fp = fopen("sleepout.txt", "r");
+	if (fp == NULL)
+		return 0;
+	while (1) {
+		fscanf(fp, "%s  ", &out[count1].check3);
+		fscanf(fp, "%s  ", &out[count1].name);
+		fscanf(fp, "%s  ", &out[count1].st_num);
+		fscanf(fp, "%s  ", &out[count1].phone);
+		fscanf(fp, "%s  ", &out[count1].room);
+		fscanf(fp, "%s  ", &out[count1].out);
+		fscanf(fp, "%s  ", &out[count1].back);
+		fscanf(fp, " %[^\n]", &out[count1].reason);
+		if (feof(fp) != 0)
+			break;
+		count1++;
+	}
+	fclose(fp);
+}
+void out_write()
+{
+	FILE* fp1 = fopen("sleepout.txt", "w");
+	for (int i = 0; i < count1; i++)
+	{
+		fprintf(fp1, "%s  ", out[i].check3);
+		fprintf(fp1, "%s  ", out[i].name);
+		fprintf(fp1, "%s  ", out[i].st_num);
+		fprintf(fp1, "%s  ", out[i].phone);
+		fprintf(fp1, "%s  ", out[i].room);
+		fprintf(fp1, "%s  ", out[i].out);
+		fprintf(fp1, "%s  ", out[i].back);
+		fprintf(fp1, "%s", out[i].reason);
+		fprintf(fp1, "\n");
+	}
+	fclose(fp1);
+}
+void penalty_append()
+{
+	FILE* fp = fopen("penalty.txt", "a");
+	fprintf(fp, "%s  ", score[count3].name);
+	fprintf(fp, "%s  ", score[count3].st_num);
+	fprintf(fp, "%s  ", score[count3].point);
+	fprintf(fp, "%s", score[count3].p_reason);
+	fprintf(fp, "\n");
+	count3++;
+	fclose(fp);
+}
+void penalty_write() 
+{
+	FILE* fp3 = fopen("penalty.txt", "w");
+	for (int i = 0; i < count3; i++)
+	{
+		fprintf(fp3, "%s  ", score[i].name);
+		fprintf(fp3, "%s  ", score[i].st_num);
+		fprintf(fp3, "%s  ", score[i].point);
+		fprintf(fp3, "%s", score[i].p_reason);
+		fprintf(fp3, "\n");
+	}
+	fclose(fp3);
+}
+void penalty_read()
+{
+	FILE* fp = fopen("penalty.txt", "r");
+	if (fp == NULL)
+		return 0;
+	while (1) {
+		fscanf(fp, "%s  ", &score[count3].name);
+		fscanf(fp, "%s  ", &score[count3].st_num);
+		fscanf(fp, "%s  ", &score[count3].point);
+		fscanf(fp, " %[^\n]s", &score[count3].p_reason);
+		if (feof(fp) != 0)
+			break;
+		count3++;
+	}
+	fclose(fp);
+}
+void query_
+{
+	FILE* fp = fopen ("inquire.txt", "a";
+	fprintf(fp, "%s/", cont[count4]).체크);
+	fprintf(fp, "%s/", cont[count4]).title);
+	fprintf(fp, "%s/", cont[count4]).st_num);
+	fprintf(fp, "%s/", cont[count4]).내용);
+	fprintf(fp, "%s", cont[count4]).answer_cont);
+	fprintf(fp, "\n");
+	count4++;
+	fclose(fp);
+}
+void 조회_읽기
+{
+	FILE* fp = fopen ("inquire.txt", "r";
+	(fp == NULL)인 경우
+		반환 0;
+	(1) { 동안
+		fscanf(fp, "%[^/]/", cont[count4]).체크);
+		fscanf(fp, "%[^/]/", cont[count4]).title);
+		fscanf(fp, "%[^/]/", cont[count4]).st_num);
+		fscanf(fp, "%[^/]/", cont[count4]).내용);
+		fscanf(fp, "%[^\n]"), cont[count4].answer_cont);
+		if (feof(fp) != 0)
+			깨짐;
+		count4++;
+	}
+	fclose(fp);
+}
+void query_write
+{
+	FILE* fp1 = fopen ("inquire.txt", "w";
+	(inti = 0; i < count 4; i++)에 대하여
+	{
+		fprintf(fp1, "%s/", cont[i].체크);
+		fprintf(fp1, "%s/", cont[i].title);
+		fprintf(fp1, "%s/", cont[i].st_num);
+		fprintf(fp1, "%s/", cont[i].내용);
+		fprintf(fp1, "%s", cont[i].answer_cont);
+		fprintf(fp1, "\n");
+	}
+	fclose(fp1);
+}
+void query_delete_write
+{
+	incount 1 = 0;
+	FILE* fp1 = fopen ("inquire.txt", "w";
+	(inti = 0; i < count 4; i++)에 대하여
+	{
+		if (strcmp(cont[i].st_num, """!= 0)
+		{
+			fprintf(fp1, "%s/", cont[i].체크);
+			fprintf(fp1, "%s/", cont[i].title);
+			fprintf(fp1, "%s/", cont[i].st_num);
+			fprintf(fp1, "%s/", cont[i].내용);
+			fprintf(fp1, "%s", cont[i].answer_cont);
+			fprintf(fp1, "\n");
+		}
+		count1++;
+	}
+	count4 = count1;
+	fclose(fp1);
+}
